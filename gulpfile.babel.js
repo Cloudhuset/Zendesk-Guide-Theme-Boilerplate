@@ -3,6 +3,7 @@
 import posthtml from 'gulp-posthtml';
 import gulp from 'gulp';
 import exp from 'posthtml-expressions';
+import include from 'posthtml-include';
 import dotenv from 'dotenv';
 import zip from 'gulp-zip';
 import runSequence from 'run-sequence';
@@ -42,10 +43,12 @@ gulp.task('build-templates', () => {
     var plugins = [
         exp({
             delimiters: ['{{%', '%}}'],
+            unescapedDelimiters: ['{{{%', '%}}}'],
             locals: {
                 ...conf.variables
             }
         }),
+        include({root: 'src/partials'})
     ];
 
     return gulp.src('./src/templates/*.hbs')
