@@ -4,6 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "production": "gulp package --env production",
+    "watch": "gulp watch --env local",
+    "build-dev": "gulp build-templates --env local",
+    "build-production": "gulp build-templates --env production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -15,6 +19,7 @@
     "dotenv": "^4.0.0",
     "gulp": "^3.9.1",
     "gulp-posthtml": "^3.0.0",
+    "gulp-sass": "^3.1.0",
     "gulp-tap": "^1.0.1",
     "gulp-zip": "^4.0.0",
     "posthtml": "^0.9.2",

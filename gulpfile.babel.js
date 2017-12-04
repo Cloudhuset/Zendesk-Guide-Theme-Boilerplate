@@ -2,6 +2,7 @@
 
 import posthtml from 'gulp-posthtml';
 import gulp from 'gulp';
+import sass from 'gulp-sass';
 import exp from 'posthtml-expressions';
 import include from 'posthtml-include';
 import dotenv from 'dotenv';
@@ -15,9 +16,10 @@ const env = argv.env;
 // Config
 import config from './config';
 
-gulp.task('package', function() {
-    dotenv.config({path: '.production.env'});
+// Load environment config file
+dotenv.config({path: env ? '.' + env + '.env' : '.local.env'});
 
+gulp.task('package', function() {
     runSequence([
         'build-templates',
         'zip'
@@ -31,9 +33,14 @@ gulp.task('zip', function() {
 });
 
 gulp.task('watch', () => {
-    dotenv.config({path: env ? '.' + env + '.env' : '.local.env'});
-
     gulp.watch('./src/templates/*.hbs', ['build-templates']);
+    gulp.watch('./src/sass/**/*.scss', ['sass']);
+});
+
+gulp.task('sass', () => {
+    return gulp.src('./src/sass/style.scss')
+        .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+        .pipe(gulp.dest('./dist'));
 });
 
 gulp.task('build-templates', () => {
