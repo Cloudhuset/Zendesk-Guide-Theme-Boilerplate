@@ -19,7 +19,7 @@ If you are developing the theme in a local environment, and moving it to another
 * When running gulp you can pass an environment: `gulp build --env local`. This will set the environment to 'local' and the .local.env file will be used to load environment specific data into Node's process.env object. This is already set up as scripts in package.json, so you can just `npm run build-dev` (or `yarn build-dev`) or `npm run build-production`.
 
 ### Insert config variable in a template file
-Inside any of the template files you can insert the value of a variable from the config file by writing `{{{% variable_name %}}}`. That will simply compile to the value of the variable.
+Inside any of the template files you can insert the value of a variable from the config file by writing `{{% variable_name %}}`. That will simply compile to the value of the variable.
 
 ### Insert config variable in sass
 All the config variables are also available in sass. You can simply refer to any of the variables as you would with normal sass variables, e.g. `color: $primary-color`. If you want to use a variable as the name of a class or id you can do it like this: `.#{$variable_name} { color: green }` or `##{$variable_name} { color: red }`.
@@ -32,7 +32,7 @@ To use control structures in the template files, please refer to the posthtml-ex
 
 ### Theme preview using ZAT (Zendesk App Tools)
 To preview the theme while developing you can use ZAT. Please refer to the following article on how to install ZAT: https://help.zendesk.com/hc/en-us/articles/229489288  
-Once installed you can run `zat theme preview` from inside the dist folder
+Once installed you can run `zat theme preview` from inside the dist folder. You can also refer to the following article for more info on zat theme preview: https://support.zendesk.com/hc/en-us/articles/115012793547-Using-local-theme-preview-Guide-Professional-
 
 ### Compiling and packaging (zip)
 To compile for production and make a zip file run `npm run package`.

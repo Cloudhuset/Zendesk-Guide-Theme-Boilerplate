@@ -20,15 +20,16 @@ const env = argv.env;
 // Configoad configuration
 const config = require('./config');
 
-gulp.task('package', function() {
-    runSequence([
-        'build-templates',
-        'zip'
-    ]);
+gulp.task('package', function(cb) {
+    runSequence(
+        'build',
+        'zip',
+        cb
+    );
 });
 
 gulp.task('zip', function() {
-    return gulp.src('dist/*')
+    return gulp.src('dist/**')
         .pipe(zip('theme.zip'))
         .pipe(gulp.dest('tmp'));
 });
@@ -58,6 +59,6 @@ gulp.task('build-templates', () => {
     ];
 
     return gulp.src('./src/templates/*.hbs')
-        .pipe(posthtml(plugins))
+        .pipe(posthtml(plugins, {template: false}))
         .pipe(gulp.dest('./dist/templates'));
 });

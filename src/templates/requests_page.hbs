@@ -78,7 +78,7 @@
 
 				<tbody>
 				{{#each requests}}
-					<tr {{#is status 'closed'}} class="request-closed" {{/is}}>
+					<tr class="{{#is status 'closed'}}request-closed{{/is}}">
 						<td class="request-info requests-table-info">
 							<a href="{{url}}" class="striped-list-title" title="{{subject}}">
 								{{#if subject}}
