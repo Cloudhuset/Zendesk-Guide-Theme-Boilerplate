@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "production": "gulp package --env production",
+    "package": "gulp package --env production",
     "watch": "gulp watch --env local",
     "build-dev": "gulp build --env local",
     "build-production": "gulp build --env production",
