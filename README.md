@@ -36,3 +36,11 @@ Once installed you can run `zat theme preview` from inside the dist folder. You 
 
 ### Compiling and packaging (zip)
 To compile for production and make a zip file run `npm run package`.
+
+## Known issues
+
+### PostHtml parser vs handlebars syntax
+Because PostHtml parses html into an AST (abstract syntax tree), it is important that the handlebars syntax does not get in the way of valid html. The following will therefore cause wrong rendering:  
+`<tr {{#is status 'closed'}} class="request-closed" {{/is}}>`.  
+Instead it can be written like this:  
+`<tr class="{{#is status 'closed'}}request-closed{{/is}}">`
