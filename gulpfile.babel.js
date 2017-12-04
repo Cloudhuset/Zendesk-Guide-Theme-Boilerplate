@@ -37,7 +37,9 @@ gulp.task('watch', () => {
     gulp.watch('./src/sass/**/*.scss', ['sass']);
 });
 
-gulp.task('sass', () => {
+gulp.task('build', ['build-sass', 'build-templates']);
+
+gulp.task('build-sass', () => {
     return gulp.src('./src/sass/style.scss')
         .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
         .pipe(gulp.dest('./dist'));
