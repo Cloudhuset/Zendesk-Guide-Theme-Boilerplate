@@ -1,5 +1,8 @@
 'use strict';
 
+// Load environment config file
+dotenv.config({path: env ? '.' + env + '.env' : '.local.env'});
+
 import posthtml from 'gulp-posthtml';
 import gulp from 'gulp';
 import sass from 'gulp-sass';
@@ -13,11 +16,8 @@ import yargs from 'yargs';
 const argv = yargs.argv;
 const env = argv.env;
 
-// Config
-import config from './config';
-
-// Load environment config file
-dotenv.config({path: env ? '.' + env + '.env' : '.local.env'});
+// Configoad configuration
+const config = require('./config');
 
 gulp.task('package', function() {
     runSequence([
@@ -46,15 +46,12 @@ gulp.task('build-sass', () => {
 });
 
 gulp.task('build-templates', () => {
-    dotenv.config({path: env ? '.' + env + '.env' : '.local.env'});
-    let conf = config();
-
     var plugins = [
         exp({
             delimiters: ['{{%', '%}}'],
             unescapedDelimiters: ['{{{%', '%}}}'],
             locals: {
-                ...conf.variables
+                ...config
             }
         }),
         include({root: 'src/partials'})
