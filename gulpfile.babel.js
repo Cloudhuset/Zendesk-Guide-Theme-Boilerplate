@@ -6,6 +6,7 @@ dotenv.config({path: env ? '.' + env + '.env' : '.local.env'});
 import posthtml from 'gulp-posthtml';
 import gulp from 'gulp';
 import sass from 'gulp-sass';
+import sassVars from 'gulp-sass-vars';
 import exp from 'posthtml-expressions';
 import include from 'posthtml-include';
 import dotenv from 'dotenv';
@@ -41,6 +42,7 @@ gulp.task('build', ['build-sass', 'build-templates']);
 
 gulp.task('build-sass', () => {
     return gulp.src('./src/sass/style.scss')
+        .pipe(sassVars(config, { verbose: false }))
         .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
         .pipe(gulp.dest('./dist'));
 });
@@ -50,9 +52,7 @@ gulp.task('build-templates', () => {
         exp({
             delimiters: ['{{%', '%}}'],
             unescapedDelimiters: ['{{{%', '%}}}'],
-            locals: {
-                ...config
-            }
+            locals: config
         }),
         include({root: 'src/partials'})
     ];
