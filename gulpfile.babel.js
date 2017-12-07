@@ -22,6 +22,28 @@ dotenv.config({path: env ? '.' + env + '.env' : '.local.env'});
 // Configoad configuration
 const config = require('./config');
 
+// Webpack configuration
+var webpackConf = Object.create(webpackConfig);
+if (env === 'production') {
+    webpackConf.plugins = webpackConf.plugins.concat(
+        new webpack.DefinePlugin({
+            "process.env": {
+                "NODE_ENV": JSON.stringify(env)
+            },
+            _config: config
+        }),
+        new webpack.optimize.UglifyJsPlugin()
+    );
+} else {
+    webpackConf.plugins = webpackConf.plugins.concat(
+        new webpack.DefinePlugin({
+            _config: config
+        })
+    );
+}
+// create a single instance of the compiler to allow caching
+var webpackCompiler = webpack(webpackConf);
+
 gulp.task('package', function(cb) {
     runSequence(
         'build',
@@ -39,7 +61,7 @@ gulp.task('zip', function() {
 gulp.task('watch', () => {
     gulp.watch('./src/templates/*.hbs', ['build-templates']);
     gulp.watch('./src/sass/**/*.scss', ['sass']);
-    gulp.watch('./src/js/**', ['build-js-dev'])
+    gulp.watch('./src/js/**', ['build-js'])
 });
 
 gulp.task('build', ['build-sass', 'build-templates', 'build-js']);
@@ -66,44 +88,9 @@ gulp.task('build-templates', () => {
         .pipe(gulp.dest('./dist/templates'));
 });
 
-var watchConfig = Object.create(webpackConfig);
-watchConfig.plugins = watchConfig.plugins.concat(
-    new webpack.DefinePlugin({
-        _config: config
-    }),
-);
-// create a single instance of the compiler to allow caching
-var devCompiler = webpack(watchConfig);
-
-gulp.task("build-js-dev", function(callback) {
-	// run webpack
-	devCompiler.run(function(err, stats) {
-		callback();
-	});
-});
-
 gulp.task("build-js", function(callback) {
-    var buildConfig = Object.create(webpackConfig);
-    if (env === 'production') {
-        buildConfig.plugins = buildConfig.plugins.concat(
-            new webpack.DefinePlugin({
-                "process.env": {
-                    "NODE_ENV": JSON.stringify(env)
-                },
-                _config: config
-            }),
-            new webpack.optimize.UglifyJsPlugin()
-        );
-    } else {
-        buildConfig.plugins = buildConfig.plugins.concat(
-            new webpack.DefinePlugin({
-                _config: config
-            })
-        );
-    }
-
 	// run webpack
-	webpack(buildConfig, function(err, stats) {
+	webpackCompiler.run(function(err, stats) {
 		callback();
 	});
 });
