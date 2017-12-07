@@ -3,9 +3,6 @@ This is a boilerplate theme for the new Zendesk Guide, that precompiles the temp
 
 ## How to's
 
-### First run
-Please add a file called `.local.env` and `.production.env` to store your environment specific variables. By default these files are gitignored. If you wish to you can track them by removing `.*.env` from .gitignore.
-
 ### Include a partial
 * Place the partial in src/partials
 * Insert `<include src="your-partial-name.hbs"></include>` in a template file

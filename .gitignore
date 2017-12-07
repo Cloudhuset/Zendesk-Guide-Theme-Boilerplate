@@ -3,4 +3,3 @@ tmp/
 dist/templates
 dist/style.css
 dist/script.js
-.*.env
