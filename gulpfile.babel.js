@@ -66,11 +66,14 @@ gulp.task('build-templates', () => {
         .pipe(gulp.dest('./dist/templates'));
 });
 
-
-
-var myDevConfig = Object.create(webpackConfig);
+var watchConfig = Object.create(webpackConfig);
+watchConfig.plugins = watchConfig.plugins.concat(
+    new webpack.DefinePlugin({
+        _config: config
+    }),
+);
 // create a single instance of the compiler to allow caching
-var devCompiler = webpack(myDevConfig);
+var devCompiler = webpack(watchConfig);
 
 gulp.task("build-js-dev", function(callback) {
 	// run webpack
@@ -80,18 +83,27 @@ gulp.task("build-js-dev", function(callback) {
 });
 
 gulp.task("build-js", function(callback) {
-	var config = Object.create(webpackConfig);
-	config.plugins = config.plugins.concat(
-		new webpack.DefinePlugin({
-			"process.env": {
-				"NODE_ENV": JSON.stringify("production")
-			}
-		}),
-		new webpack.optimize.UglifyJsPlugin()
-	);
+    var buildConfig = Object.create(webpackConfig);
+    if (env === 'production') {
+        buildConfig.plugins = buildConfig.plugins.concat(
+            new webpack.DefinePlugin({
+                "process.env": {
+                    "NODE_ENV": JSON.stringify(env)
+                },
+                _config: config
+            }),
+            new webpack.optimize.UglifyJsPlugin()
+        );
+    } else {
+        buildConfig.plugins = buildConfig.plugins.concat(
+            new webpack.DefinePlugin({
+                _config: config
+            })
+        );
+    }
 
 	// run webpack
-	webpack(config, function(err, stats) {
+	webpack(buildConfig, function(err, stats) {
 		callback();
 	});
 });

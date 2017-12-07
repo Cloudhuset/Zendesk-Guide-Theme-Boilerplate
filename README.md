@@ -21,6 +21,9 @@ Inside any of the template files you can insert the value of a variable from the
 ### Insert config variable in sass
 All the config variables are also available in sass. You can simply refer to any of the variables as you would with normal sass variables, e.g. `color: $primary-color`. If you want to use a variable as the name of a class or id you can do it like this: `.#{$variable_name} { color: green }` or `##{$variable_name} { color: red }`.
 
+### Insert config variable in javascript
+To access the config variables in javascript, use the `_config` object, e.g. `_config.category_ticket_field`. You do not need to import the config file anywhere, it's automatically available through webpack's define plugin.
+
 ### Use Zendesk settings variable in sass
 When using the zendesk theme editor to write css, you can insert settings variables, and Zendesk will compile their values. However when trying to use one of these values when precompiling our theme, node-sass will try to compile a variable that doesn't exist. So we have to escape these variables. We can do this using the sass unquote() function. Example: `background-image: url(unquote("$homepage_background_image"));`
 
