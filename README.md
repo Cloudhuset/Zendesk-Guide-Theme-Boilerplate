@@ -34,6 +34,9 @@ To use control structures in the template files, please refer to the posthtml-ex
 To preview the theme while developing you can use ZAT. Please refer to the following article on how to install ZAT: https://help.zendesk.com/hc/en-us/articles/229489288  
 Once installed you can run `zat theme preview` from inside the dist folder. You can also refer to the following article for more info on zat theme preview: https://support.zendesk.com/hc/en-us/articles/115012793547-Using-local-theme-preview-Guide-Professional-
 
+### Assets, settings, translations
+All your assets, settings, translations, manifest and so on, can be put directly into their respective locations inside the dist/ folder, as they are not compiled. The dist/ folder follows the exacts structure of exported themes from Zendesk Guide.
+
 ### Compiling and packaging (zip)
 To compile for production and make a zip file run `npm run package`.
 
