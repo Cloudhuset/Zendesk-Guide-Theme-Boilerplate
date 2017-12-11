@@ -47,3 +47,6 @@ Because PostHtml parses html into an AST (abstract syntax tree), it is important
 `<tr {{#is status 'closed'}} class="request-closed" {{/is}}>`.  
 Instead it can be written like this:  
 `<tr class="{{#is status 'closed'}}request-closed{{/is}}">`
+
+## Copenhagen theme
+We have included template and SASS files from the original copenhagen theme, which is publicly available here: https://github.com/zendesk/copenhagen_theme
