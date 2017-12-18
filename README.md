@@ -30,6 +30,16 @@ When using the zendesk theme editor to write css, you can insert settings variab
 ### Using control structures inside templates (if/else, switch, loops)
 To use control structures in the template files, please refer to the posthtml-expressions documentation at https://github.com/posthtml/posthtml-expressions
 
+### Automatically add icons to categories
+If you put an image named `cat-icon_{category_id}.{file_extension}`, e.g. `cat-icon_115000739129.png` into the dist/assets folder, it will automatically be made available as an object in the format `{ cat_id: filename }`. Then you can put the following loop into your category loop on the home page:  
+```
+<each loop="fileName, id in category_icons">
+    {{#is id {{% id %}} }}
+        <img src="{{asset '{{% fileName %}}'}}" />
+    {{/is}}
+</each>
+```
+
 ### Theme preview using ZAT (Zendesk App Tools)
 To preview the theme while developing you can use ZAT. Please refer to the following article on how to install ZAT: https://help.zendesk.com/hc/en-us/articles/229489288  
 Once installed you can run `zat theme preview` from inside the dist folder. You can also refer to the following article for more info on zat theme preview: https://support.zendesk.com/hc/en-us/articles/115012793547-Using-local-theme-preview-Guide-Professional-
@@ -44,9 +54,13 @@ To compile for production and make a zip file run `npm run package`.
 
 ### PostHtml parser vs handlebars syntax
 Because PostHtml parses html into an AST (abstract syntax tree), it is important that the handlebars syntax does not get in the way of valid html. The following will therefore cause wrong rendering:  
-`<tr {{#is status 'closed'}} class="request-closed" {{/is}}>`.  
+```
+<tr {{#is status 'closed'}} class="request-closed" {{/is}}>
+```  
 Instead it can be written like this:  
-`<tr class="{{#is status 'closed'}}request-closed{{/is}}">`
+```
+<tr class="{{#is status 'closed'}}request-closed{{/is}}">
+```
 
 ## Copenhagen theme
 We have included template and SASS files from the original copenhagen theme, which is publicly available here: https://github.com/zendesk/copenhagen_theme
