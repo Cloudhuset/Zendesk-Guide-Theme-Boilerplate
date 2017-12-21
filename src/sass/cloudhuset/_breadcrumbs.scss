@@ -20,8 +20,20 @@
       content: ">";
       margin: 0 4px;
     }
+
+    a {
+      &:hover {
+        text-decoration: none;
+        color: $brand_color;
+      }
+    }
+
     a:visited {
-      color: $link_color;
+      color: $secondary-text-color;
+
+      &:hover {
+        color: $brand_color;
+      }
     }
   }
 }

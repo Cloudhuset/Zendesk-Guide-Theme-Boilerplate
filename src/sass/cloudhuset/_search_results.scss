@@ -31,6 +31,23 @@
 
 .search-result {
 
+  &-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $text-color;
+    font-weight: $font-weight-semibold;
+
+    &:hover {
+      text-decoration: none;
+      color: $brand_color;
+    }
+
+    i {
+      margin-left: 5px;
+    }
+  }
+
   &-description {
     margin-top: 15px;
   }
@@ -43,6 +60,7 @@
     font-weight: $font-weight-light;
     padding: 4px 5px;
     position: relative;
+    display: flex;
 
     &::before {
       @extend .icon;
@@ -64,16 +82,21 @@
     }
   }
 
-  &-votes::before {
-    content: "\1F44D";
-  }
-
   &-meta-count::before {
     content: "\1F4AC";
   }
 
   .meta-group {
     align-items: center;
+
+    li a, 
+    li a:visited { 
+      color: $secondary-text-color;
+
+      &:hover {
+        color: $brand_color;
+      }
+    }
   }
 
   &-breadcrumbs {

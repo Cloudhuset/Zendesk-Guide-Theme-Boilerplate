@@ -1,18 +1,9 @@
 /***** Article *****/
 .article {
-  /*
-  * The article grid is defined this way to optimize readability:
-  * Sidebar | Content | Free space
-  * 17%     | 66%     | 17%
-  */
   @include desktop {
-    flex: 1 0 66%;
     max-width: 66%;
     min-width: 640px;
-    padding: 0 30px;
   }
-
-  flex: 1 0 auto; //Explicit values needed whith flex-direction: column for IE11
 
   &-container {
     @include desktop {
@@ -21,9 +12,10 @@
 
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
   }
 
-  &-header {
+  &__header {
     @include tablet {
       flex-direction: row;
       margin-top: 0;
@@ -38,11 +30,11 @@
     margin-top: 20px;
   }
 
-  &-author {
+  &__author {
     margin-bottom: 10px;
   }
 
-  &-title {
+  &__title {
     @include tablet {
       flex-basis: 100%; /* Take entire row */
     }
@@ -66,7 +58,7 @@
     max-width: 100%;
   }
 
-  &-meta {
+  &__meta {
     display: inline-block;
     margin-left: 10px;
     vertical-align: middle;
@@ -110,13 +102,11 @@
   &-sidebar {
     @include desktop {
       border: 0;
-      flex: 0 0 17%;
       height: auto;
     }
 
     border-bottom: 1px solid $border-color;
     border-top: 1px solid $border-color;
-    flex: 1 0 auto; //Explicit values needed whith flex-direction: column for IE11
     margin-bottom: 20px;
     padding: 0;
   }

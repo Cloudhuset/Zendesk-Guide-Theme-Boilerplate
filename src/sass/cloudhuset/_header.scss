@@ -13,8 +13,7 @@ $header-height: 80px;
   &__logo {
 
     img {
-      max-height: 40px;
-      width: 100%;
+      width: 170px;
     }
   }
 
@@ -31,6 +30,11 @@ $header-height: 80px;
 
       * {
         color: $text-color;
+        
+        &:hover {
+          text-decoration: none;
+          color: $brand_color;
+        }
       }
     }
   }

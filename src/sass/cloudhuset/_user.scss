@@ -35,8 +35,6 @@
   @include tablet { display: inline-block; }
   display: none;
   font-size: 14px;
-
-  &:hover { text-decoration: underline; }
 }
 
 /***** User avatar *****/
@@ -46,6 +44,8 @@
   border-radius: 50%;
   display: inline-block;
   vertical-align: middle;
+  object-fit: cover;
+  margin-right: 5px;
 }
 
 .avatar {
@@ -55,6 +55,7 @@
   img {
     height: 40px;
     width: 40px;
+    object-fit: cover;
   }
 
   .icon-agent::before {
