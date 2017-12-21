@@ -1,32 +1,38 @@
-<section class="section hero">
-	<div class="hero-inner">
+<section class="hero">
+	<div class="hero__inner">
+		<h1 class="hero__text">Search the help center</h1>
 		{{search submit=false instant=true class='search search-full'}}
 	</div>
 </section>
 
 <div class="container">
-	<section class="section knowledge-base">
+
 		<section class="categories blocks">
 			<ul class="blocks-list">
 				{{#each categories}}
 					{{#if ../has_multiple_categories}}
-						<li class="blocks-item">
-							<a href='{{url}}' class="blocks-item-link">
-								<h4 class="blocks-item-title">{{name}}</h4>
-								<p class="blocks-item-description">{{excerpt description}}</p>
+						<li class="blocks__item">
+							<a href='{{url}}' class="blocks__item-link">
+								<each loop="cat in categories">
+									{{#is id {{% cat.id %}} }}
+										<img src="{{asset '{{% cat.icon %}}'}}" class="blocks__item-icon" />
+									{{/is}}
+								</each>
+								<h4 class="blocks__item-title">{{name}}</h4>
+								<p class="blocks__item-description">{{excerpt description}}</p>
 							</a>
 						</li>
 					{{else}}
 						{{#each sections}}
-							<li class="blocks-item {{#if internal}}blocks-item-internal{{/if}}">
+							<li class="blocks__item {{#if internal}}blocks__item--internal{{/if}}">
 								<a href='{{url}}' class="blocks-item-link">
-									<h4 class="blocks-item-title">
+									<h4 class="blocks__item-title">
 										{{name}}
 										{{#if internal}}
 											<span class="icon-lock" title="{{t 'internal'}}"></span>
 										{{/if}}
 									</h4>
-									<p class="blocks-item-description">{{excerpt description}}</p>
+									<p class="blocks__item-description">{{excerpt description}}</p>
 								</a>
 							</li>
 						{{/each}}
@@ -35,35 +41,4 @@
 			</ul>
 			{{pagination}}
 		</section>
-
-		{{#if promoted_articles}}
-			<section class="articles">
-				<h3>{{t 'promoted_articles'}}</h3>
-				<ul class="article-list promoted-articles">
-					{{#each promoted_articles}}
-						<li class="promoted-articles-item">
-							<a href="{{url}}">
-								{{title}}
-							</a>
-						</li>
-					{{/each}}
-				</ul>
-			</section>
-		{{/if}}
-	</section>
-
-	{{#if help_center.community_enabled}}
-		<section class="section community">
-			<h2>{{t 'community'}}</h2>
-			{{#link 'community' class='community-link'}}
-				{{t 'join_conversation'}}
-			{{/link}}
-
-			<div class="community-image"></div>
-		</section>
-	{{/if}}
-
-	<section class="section activity">
-		{{recent_activity}}
-	</section>
 </div>

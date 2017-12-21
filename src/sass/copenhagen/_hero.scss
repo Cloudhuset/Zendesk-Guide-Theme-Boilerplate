@@ -4,13 +4,31 @@
   background-position: center;
   background-size: cover;
   height: 300px;
-  padding: 0 20px;
   text-align: center;
   width: 100%;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  position: relative;
 
-  &-inner {
-    @include vertical-align;
+  &:after {
+    content: "";
+    background: rgba(0,0,0,.5);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  &__inner {
     max-width: 610px;
     margin: 0 auto;
+    width: 100%;
+    z-index: 9;
+  }
+
+  &__text {
+    color: $brand_text_color;
   }
 }

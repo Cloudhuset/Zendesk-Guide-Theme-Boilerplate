@@ -11,11 +11,13 @@ body {
   font-weight: $font-weight-base;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 
   > main {
-    @include desktop {
-      min-height: 65vh;
-    }
+    flex: 1;
+    margin-bottom: 60px;
   }
 }
 

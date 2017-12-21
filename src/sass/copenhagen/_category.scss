@@ -2,14 +2,10 @@
 .category {
   &-container {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
   }
 
   &-content {
-    @include desktop {
-      flex: 0 0 80%;
-    }
-
     flex: 1;
   }
 }

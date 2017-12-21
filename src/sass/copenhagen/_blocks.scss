@@ -13,22 +13,30 @@
     padding: 0;
   }
 
-  &-item {
+  &__item {
     @include tablet {
-      margin: 0 15px 30px;
+      flex-basis: 33.33%;
     }
-
-    border: 1px solid $brand_color;
-    border-radius: 4px;
+    
     box-sizing: border-box;
-    color: $brand_color;
+    color: $text-color;
     display: flex;
-    flex: 1 0 340px;
+    flex-basis: 100%;
     flex-direction: column;
     justify-content: center;
-    margin: 0 0 30px;
     max-width: 100%;
     text-align: center;
+    transition: color 300ms ease;
+    border-right: 1px solid $border-color;
+    margin-bottom: 24px;
+
+    &:nth-child(3n) {
+      border: none;
+    }
+
+    &:last-child {
+      border: none;
+    }
 
     &:hover,
     &:focus,
@@ -41,7 +49,7 @@
       }
     }
 
-    &-internal {
+    &--internal {
       background-color: transparent;
       border: 1px solid $border-color;
 
@@ -54,11 +62,16 @@
 
       a { color: $text_color; }
     }
+
+    &-icon {
+      width: 48px;
+      margin-bottom: 16px;
+    }
   }
 
-  &-item-link {
-    color: $brand_color;
-    padding: 20px 30px;
+  &__item-link {
+    color: $text-color;
+    padding: 32px;
 
     &:hover,
     &:focus,
@@ -67,16 +80,16 @@
     }
   }
 
-  &-item-title {
+  &__item-title {
     margin-bottom: 0;
   }
 
-  &-item-description {
+  &__item-description {
     font-weight: $font-weight-light;
     margin: 0;
   }
 
-  &-item-description:not(:empty) {
+  &__item-description:not(:empty) {
     margin-top: 10px;
   }
 }

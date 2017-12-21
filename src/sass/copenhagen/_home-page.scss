@@ -1,5 +1,9 @@
 /***** Homepage *****/
 
+.categories {
+  margin-bottom: 64px;
+}
+
 .section {
   @include tablet {
     margin-bottom: 60px;

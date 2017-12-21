@@ -1,10 +1,9 @@
 /***** Footer *****/
 .footer {
-  border-top: 1px solid $border-color;
-  margin-top: 60px;
+  background-color: $border-color;
   padding: 30px 0;
 
-  a { color: $secondary-text-color; }
+  a { color: $text-color; }
 
   &-inner {
     @include max-width-container;
