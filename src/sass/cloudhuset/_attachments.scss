@@ -2,11 +2,22 @@
 /* Styles attachments inside posts, articles and comments */
 .attachments {
   .attachment-item {
-    padding-left: 20px;
     position: relative;
-    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid $border-color;
+    padding: 15px 0;
+    flex-wrap: wrap;
 
-    &:last-child { margin-bottom: 0; }
+    @include desktop {
+      padding: 15px 0 15px 20px;
+    }
+
+    &:last-child { 
+      margin-bottom: 0;
+      border-bottom: 0;
+    }
 
     &::before {
       @extend .icon;
@@ -15,7 +26,15 @@
       font-size: $font-size-base;
       left: 0;
       position: absolute;
-      top: 5px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: none;
+    }
+
+    @include desktop {
+      &::before {
+        display: block;
+      }
     }
 
     [dir="rtl"] & {
@@ -25,6 +44,22 @@
       &::before {
         left: auto;
         right: 0;
+      }
+    }
+
+    &__title {
+      width: 100%;
+
+      @include desktop {
+        width: auto;
+      }
+    }
+
+    &__meta {
+      width: 100%;
+
+      @include desktop {
+        width: auto;
       }
     }
   }

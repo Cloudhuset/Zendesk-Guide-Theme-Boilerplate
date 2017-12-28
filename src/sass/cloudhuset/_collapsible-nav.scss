@@ -51,7 +51,7 @@
 
   li:hover {
     @include tablet {
-      border-bottom: 4px solid #ddd;
+      border-bottom: 2px solid #ddd;
 
       a {
         padding: 15px 0 11px 0;
@@ -62,7 +62,7 @@
 
   li[aria-selected="true"] {
     @include tablet {
-      border-bottom: 4px solid $brand_color;
+      border-bottom: 2px solid $brand_color;
       order: 1;
       padding: 15px 0 11px 0;
     }

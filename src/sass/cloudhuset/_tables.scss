@@ -1,5 +1,5 @@
 /***** Tables *****/
-.table {
+.table, table {
   @include tablet { table-layout: auto; }
 
   width: 100%;

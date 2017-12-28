@@ -10,7 +10,7 @@
   }
 }
 
-.section-tree {
+.sections {
   @include tablet { flex-direction: row; }
   display: flex;
   flex-direction: column;
@@ -59,6 +59,10 @@
 
       &:hover {
         color: $brand_color;
+      }
+
+      i {
+        padding-left: 10px;
       }
     }
   }

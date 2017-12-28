@@ -8,7 +8,7 @@
 
   &-sub-nav {
     @include tablet {
-      li:hover { border-bottom: 4px solid #ddd; }
+      li:hover { border-bottom: 2px solid #ddd; }
     }
 
     background-color: transparent;

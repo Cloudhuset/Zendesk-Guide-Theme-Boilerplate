@@ -2,6 +2,11 @@
 .user-info {
   display: inline-block;
 
+  .dropdown-toggle {
+    display: flex;
+    align-items: center;
+  }
+
   .dropdown-toggle::after {
     @include tablet { display: inline-block;}
     display: none;

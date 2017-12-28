@@ -3,6 +3,7 @@
   @include desktop {
     max-width: 66%;
     min-width: 640px;
+    padding-right: 40px;
   }
 
   &-container {
@@ -54,7 +55,7 @@
     width: 100%;
   }
 
-  &-info {
+  &__info {
     max-width: 100%;
   }
 
@@ -64,25 +65,29 @@
     vertical-align: middle;
   }
 
-  &-body {
+  &__body {
     @include content-body;
     > p:last-child { margin-bottom: 0; }
   }
 
-  &-content {
+  &__content {
     line-height: 1.6;
     margin: 40px 0;
     word-wrap: break-word;
   }
 
-  &-footer {
+  &__attachments {
+    margin-top: 30px;
+  }
+
+  &__footer {
     align-items: center;
     display: flex;
     justify-content: space-between;
     padding-bottom: 20px;
   }
 
-  &-comment-count {
+  &__comment-count {
     color: $secondary-text-color;
     font-weight: $font-weight-light;
 
@@ -99,10 +104,11 @@
     }
   }
 
-  &-sidebar {
+  &__sidebar {
     @include desktop {
       border: 0;
       height: auto;
+      width: 34%;
     }
 
     border-bottom: 1px solid $border-color;
@@ -111,7 +117,7 @@
     padding: 0;
   }
 
-  &-relatives {
+  &__relatives {
     @include tablet {
       flex-direction: row;
     }
@@ -132,7 +138,7 @@
   }
 
 
-  &-votes {
+  &__votes {
     border-top: 1px solid $border-color;
     padding: 30px 0;
     text-align: center;

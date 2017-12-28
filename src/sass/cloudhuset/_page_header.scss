@@ -24,6 +24,12 @@
   h1 {
     flex-grow: 1;
     margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+
+    i {
+      margin-left: 10px;
+    }
   }
 
   &-description {

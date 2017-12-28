@@ -9,6 +9,7 @@ $header-height: 80px;
   height: $header-height;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 
   &__logo {
 
@@ -18,10 +19,26 @@ $header-height: 80px;
   }
 
   &__nav {
+    @include tablet {
+      position: static;
+      flex-wrap: nowrap;
+      width: auto;
+    }
+
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
+    position: fixed;
+    top: $header-height;
+    left: 0;
+    right: 0;
+    width: 100%;
 
     &-item {
+      @include tablet {
+        width: auto;
+      }
+      width: 100%;
       margin: 0 16px;
 
       &:last-child {

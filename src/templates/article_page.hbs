@@ -10,7 +10,7 @@
 				<h1 title="{{article.title}}" class="article__title">
 					{{article.title}}
 					{{#if article.internal}}
-						<span class="icon-lock" title="{{t 'internal'}}"></span>
+						<i class="material-icons md-24">lock</i>
 					{{/if}}
 				</h1>
 
@@ -39,16 +39,16 @@
 				{{subscribe}}
 			</header>
 
-			<section class="article-info">
-				<div class="article-content">
-					<div class="article-body">{{article.body}}</div>
+			<section class="article__info">
+				<div class="article__content">
+					<div class="article__body">{{article.body}}</div>
 
-					<div class="article-attachments">
+					<div class="article__attachments">
 						<ul class="attachments">
 							{{#each attachments}}
 								<li class="attachment-item">
-									<a href="{{url}}" target="_blank">{{name}}</a>
-									<div class="attachment-meta meta-group">
+									<div class="attachment-item__title"><a href="{{url}}" target="_blank">{{name}}</a></div>
+									<div class="attachment-meta meta-group attachment-item__meta">
 										<span class="attachment-meta-item meta-data">{{size}}</span>
 										<a href="{{url}}" target="_blank" class="attachment-meta-item meta-data">Download</a>
 									</div>
@@ -60,7 +60,7 @@
 			</section>
 
 			<footer>
-				<div class="article-footer">
+				<div class="article__footer">
 					<div class="article-share">{{share}}</div>
 					{{#if comments}}
 						<a href="#article-comments" class="article-comment-count">
@@ -70,7 +70,7 @@
 					{{/if}}
 				</div>
 				{{#with article}}
-					<div class="article-votes">
+					<div class="article__votes">
 						<span class="article-votes-question">{{t 'was_this_article_helpful'}}</span>
 						<div class="article-votes-controls" role='radiogroup'>
 							{{vote 'up' role='radio' class='button article-vote article-vote-up'}}
@@ -82,7 +82,7 @@
 					</div>
 				{{/with}}
 
-				<div class="article-more-questions">
+				<div class="article__more-questions">
 					{{request_callout}}
 				</div>
 				<div class="article-return-to-top">
@@ -90,11 +90,11 @@
 				</div>
 			</footer>
 
-			<section class="article-relatives">
+			<section class="article__relatives">
 				{{recent_articles}}
 				{{related_articles}}
 			</section>
-			<div class="article-comments" id="article-comments">
+			<div class="article__comments" id="article-comments">
 				<section class="comments">
 					<header class="comment-overview">
 						<h3 class="comment-heading">
@@ -190,7 +190,7 @@
 			</div>
 		</article>
 
-		<section class="article-sidebar">
+		<section class="article__sidebar">
 			<section class="section-articles collapsible-sidebar">
 				<h3 class="collapsible-sidebar-title sidenav-title">{{t 'articles_in_section'}}</h3>
 				<ul>

@@ -16,6 +16,14 @@ module.exports = {
         {
             id: 200929635,
             icon: 'puzzle.svg'
+        },
+        {
+            id: 115000898125,
+            icon: 'airplane.svg'
+        },
+        {
+            id: 115000895989,
+            icon: 'motorcycle.svg'
         }
     ]
 }
