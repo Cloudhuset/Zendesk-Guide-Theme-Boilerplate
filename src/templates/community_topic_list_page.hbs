@@ -1,13 +1,12 @@
 <section class="section hero community-hero">
-	<div class="hero-inner">
+	<div class="hero__inner">
+		<h1 class="hero__text">Search community</h1>
 		{{search submit=false class='search search-full' scoped=true}}
 	</div>
 </section>
 
 <div class="container">
-	<nav class="sub-nav">
-		{{breadcrumbs}}
-	</nav>
+	<include src="subnav-partial.hbs"></include>
 
 	<header class="page-header community-header">
 		<div class="page-header-item dropdown">
@@ -32,19 +31,19 @@
 		<p>{{t 'no_content'}}</p>
 	{{/unless}}
 
-	<div class="blocks topics">
-		<ul class="blocks-list topics-list">
+	<div class="topics">
+		<ul class="category-list topics-list">
 			{{#each topics}}
-				<li class="blocks-item topics-item {{#if internal}}blocks-item-internal{{/if}}">
-					<a href="{{url}}" class="blocks-item-link">
-						<h4 class="blocks-item-title">
+				<li class="category-list__item topics-item {{#if internal}}category-list__item--internal{{/if}}">
+					<a href="{{url}}" class="category-list__item-link">
+						<h4 class="category-list__item-title">
 							{{name}}
 
 							{{#if internal}}
 								<span class="icon-lock" title="{{t 'internal'}}"></span>
 							{{/if}}
 						</h4>
-						<p class="blocks-item-description">{{excerpt description}}</p>
+						<p class="category-list__item-description">{{excerpt description}}</p>
 						<ul class="meta-group">
 							<li class="meta-data">{{t 'post_count' count=post_count}}</li>
 							<li class="meta-data">{{t 'follower_count' count=follower_count}}</li>

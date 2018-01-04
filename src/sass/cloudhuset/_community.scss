@@ -2,7 +2,15 @@
 .community {
   &-hero {
     background-image: url(unquote("$community_background_image"));
-    margin-bottom: 10px;
+    background-position: center;
+    background-size: cover;
+    height: 300px;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    position: relative;
   }
 
   &-footer {
@@ -18,6 +26,7 @@
 
   &-header {
     margin-bottom: 30px;
+    flex-direction: row;
 
     h4 { margin-bottom: 0; }
   }
