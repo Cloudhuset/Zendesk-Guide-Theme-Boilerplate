@@ -14,7 +14,7 @@
 
     &__item {
       @include tablet {
-        flex-basis: 33.33%;
+        width: 33.33%;
         border-right: 1px solid $border-color;
         border-bottom: none;
         margin-bottom: 30px;
@@ -23,7 +23,7 @@
       box-sizing: border-box;
       color: $text-color;
       display: flex;
-      flex-basis: 100%;
+      width: 100%;
       flex-direction: column;
       justify-content: center;
       max-width: 100%;
