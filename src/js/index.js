@@ -1,4 +1,22 @@
 import copenhagen from './copenhagen';
+import { getCategories, getSections, getArticles } from './api';
+import { render } from './articleTree';
 
-// Access config values via _config
-console.log(_config.category_ticket_field);
+$(document).on('ready', function() {
+
+	let categories = []
+	let sections = []
+	let articles = []
+
+	getCategories([], null, (categoriesArr) => {
+		categories = categoriesArr
+		getSections([], null, (sectionsArr) => {
+			sections = sectionsArr
+			getArticles([], null, (articlesArr) => {
+				articles = articlesArr
+				render(categories, sections, articles)
+			});
+		});
+	});
+
+});
