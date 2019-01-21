@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "package": "gulp package --env production",
+    "package-local": "gulp package --env local",
     "watch": "gulp watch --env local",
     "build-dev": "gulp build --env local",
     "build-production": "gulp build --env production",
+    "preview": "cd dist && zat theme preview",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
