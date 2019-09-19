@@ -7,6 +7,8 @@ import sass from 'gulp-sass';
 import sassVars from 'gulp-sass-vars';
 import exp from 'posthtml-expressions';
 import include from 'posthtml-include';
+import postCss from 'gulp-postcss';
+import autoprefixer from 'autoprefixer';
 import dotenv from 'dotenv';
 import zip from 'gulp-zip';
 import runSequence from 'run-sequence';
@@ -64,12 +66,15 @@ gulp.task('watch', () => {
     gulp.watch('./src/js/**', ['build-js'])
 });
 
-gulp.task('build', ['build-sass', 'build-templates', 'build-js']);
-
 gulp.task('build-sass', () => {
+    const plugins = [
+        autoprefixer(),
+    ];
+
     return gulp.src('./src/sass/style.scss')
         .pipe(sassVars(config, { verbose: false }))
         .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+        .pipe(postCss(plugins))
         .pipe(gulp.dest('./dist'));
 });
 
@@ -94,3 +99,5 @@ gulp.task("build-js", function(callback) {
 		callback();
 	});
 });
+
+gulp.task('build', gulp.parallel('build-sass', 'build-templates', 'build-js'));
