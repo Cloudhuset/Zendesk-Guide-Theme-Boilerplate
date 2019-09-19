@@ -13,7 +13,8 @@ import dotenv from 'dotenv';
 import zip from 'gulp-zip';
 import runSequence from 'run-sequence';
 import yargs from 'yargs';
-import webpackConfig from './webpack.config';
+import webpackDevConfig from './webpack.dev';
+import webpackProdConfig from './webpack.prod';
 import webpack from 'webpack';
 
 // Load environment config file
@@ -25,18 +26,19 @@ dotenv.config({path: env ? '.' + env + '.env' : '.local.env'});
 const config = require('./config');
 
 // Webpack configuration
-var webpackConf = Object.create(webpackConfig);
+var webpackConf = null;
 if (env === 'production') {
+    webpackConf = webpackProdConfig; // Object.create(webpackProdConfig);
     webpackConf.plugins = webpackConf.plugins.concat(
         new webpack.DefinePlugin({
             "process.env": {
                 "NODE_ENV": JSON.stringify(env)
             },
             _config: config
-        }),
-        new webpack.optimize.UglifyJsPlugin()
+        })
     );
 } else {
+    webpackConf = webpackDevConfig; //Object.create(webpackDevConfig);
     webpackConf.plugins = webpackConf.plugins.concat(
         new webpack.DefinePlugin({
             _config: config
@@ -96,6 +98,9 @@ gulp.task('build-templates', () => {
 gulp.task("build-js", function(callback) {
 	// run webpack
 	webpackCompiler.run(function(err, stats) {
+        if (err) {
+            console.err(err);
+        }
 		callback();
 	});
 });

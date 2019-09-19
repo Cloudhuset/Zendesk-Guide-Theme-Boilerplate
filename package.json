@@ -39,6 +39,8 @@
     "webpack": "^4.40.2",
     "yargs": "^14.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "webpack-merge": "^4.2.2"
+  },
   "keywords": []
 }
