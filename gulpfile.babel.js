@@ -7,11 +7,14 @@ import sass from 'gulp-sass';
 import sassVars from 'gulp-sass-vars';
 import exp from 'posthtml-expressions';
 import include from 'posthtml-include';
+import postCss from 'gulp-postcss';
+import autoprefixer from 'autoprefixer';
 import dotenv from 'dotenv';
 import zip from 'gulp-zip';
 import runSequence from 'run-sequence';
 import yargs from 'yargs';
-import webpackConfig from './webpack.config';
+import webpackDevConfig from './webpack.dev';
+import webpackProdConfig from './webpack.prod';
 import webpack from 'webpack';
 
 // Load environment config file
@@ -23,18 +26,19 @@ dotenv.config({path: env ? '.' + env + '.env' : '.local.env'});
 const config = require('./config');
 
 // Webpack configuration
-var webpackConf = Object.create(webpackConfig);
+let webpackConf = null;
 if (env === 'production') {
+    webpackConf = webpackProdConfig; // Object.create(webpackProdConfig);
     webpackConf.plugins = webpackConf.plugins.concat(
         new webpack.DefinePlugin({
             "process.env": {
                 "NODE_ENV": JSON.stringify(env)
             },
             _config: config
-        }),
-        new webpack.optimize.UglifyJsPlugin()
+        })
     );
 } else {
+    webpackConf = webpackDevConfig; //Object.create(webpackDevConfig);
     webpackConf.plugins = webpackConf.plugins.concat(
         new webpack.DefinePlugin({
             _config: config
@@ -42,7 +46,7 @@ if (env === 'production') {
     );
 }
 // create a single instance of the compiler to allow caching
-var webpackCompiler = webpack(webpackConf);
+const webpackCompiler = webpack(webpackConf);
 
 gulp.task('package', function(cb) {
     runSequence(
@@ -64,12 +68,15 @@ gulp.task('watch', () => {
     gulp.watch('./src/js/**', ['build-js'])
 });
 
-gulp.task('build', ['build-sass', 'build-templates', 'build-js']);
-
 gulp.task('build-sass', () => {
+    const plugins = [
+        autoprefixer(),
+    ];
+
     return gulp.src('./src/sass/style.scss')
         .pipe(sassVars(config, { verbose: false }))
         .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+        .pipe(postCss(plugins))
         .pipe(gulp.dest('./dist'));
 });
 
@@ -94,3 +101,5 @@ gulp.task("build-js", function(callback) {
 		callback();
 	});
 });
+
+gulp.task('build', gulp.parallel('build-sass', 'build-templates', 'build-js'));
