@@ -1,13 +1,13 @@
 {
-  "name": "posthtmltest",
-  "version": "1.0.0",
+  "name": "cloudhuset-help-center-theme-boilerplate",
+  "version": "2.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "package": "gulp package --env production",
     "watch": "gulp watch --env local",
     "build-dev": "gulp build --env local",
-    "build-production": "gulp build --env production",
+    "build-prod": "gulp build --env production",
     "preview": "zat theme preview --path='dist'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,11 +15,16 @@
   "license": "ISC",
   "dependencies": {
     "autoprefixer": "^9.6.1",
-    "babel-core": "^6.26.3",
-    "babel-loader": "^8.0.6",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "dotenv": "^8.1.0",
+    "run-sequence": "^2.2.1",
+    "yargs": "^14.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.2",
+    "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
+    "@babel/preset-env": "^7.6.2",
+    "@babel/register": "^7.6.2",
     "glob-fs": "^0.1.7",
     "gulp": "^4.0.2",
     "gulp-postcss": "^8.0.0",
@@ -31,10 +36,7 @@
     "posthtml": "^0.11.6",
     "posthtml-expressions": "^1.1.1",
     "posthtml-include": "^1.2.0",
-    "run-sequence": "^2.2.1",
-    "webpack": "^4.40.2",
-    "yargs": "^14.0.0"
+    "webpack": "^4.41.0"
   },
-  "devDependencies": {},
   "keywords": []
 }

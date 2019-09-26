@@ -96,6 +96,9 @@ gulp.task('build-templates', () => {
 gulp.task("build-js", function(callback) {
 	// run webpack
 	webpackCompiler.run(function(err, stats) {
+        if (stats) {
+            console.error(stats);
+        }
 		callback();
 	});
 });
