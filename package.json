@@ -37,10 +37,18 @@
     "gulp-sass-vars": "^1.3.0",
     "gulp-tap": "^2.0.0",
     "gulp-zip": "^5.0.0",
+    "gulp4-run-sequence": "^1.0.0",
     "posthtml": "^0.11.6",
     "posthtml-expressions": "^1.1.1",
     "posthtml-include": "^1.2.0",
-    "webpack": "^4.41.0",
+    "promise-polyfill": "^8.1.3",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4",
+    "run-sequence": "^2.2.1",
+    "webpack": "^4.40.2",
+    "yargs": "^14.0.0"
+  },
+  "devDependencies": {
     "webpack-merge": "^4.2.2"
   },
   "keywords": []
