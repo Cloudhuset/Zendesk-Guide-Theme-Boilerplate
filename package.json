@@ -16,7 +16,10 @@
   "dependencies": {
     "autoprefixer": "^9.6.1",
     "dotenv": "^8.1.0",
+    "lodash": "^4.17.15",
+    "lodash.template": "^4.5.0",
     "run-sequence": "^2.2.1",
+    "set-value": "^3.0.1",
     "yargs": "^14.0.0"
   },
   "devDependencies": {
