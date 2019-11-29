@@ -15,6 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "autoprefixer": "^9.6.1",
+    "braces": "^3.0.2",
     "dotenv": "^8.1.0",
     "lodash": "^4.17.15",
     "lodash.template": "^4.5.0",
