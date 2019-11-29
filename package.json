@@ -6,7 +6,7 @@
   "scripts": {
     "package": "gulp package --env production",
     "package-local": "gulp package --env local",
-    "watch": "gulp watch --env local",
+    "watch": "gulp build --env local watch --env local",
     "build-dev": "gulp build --env local",
     "build-prod": "gulp build --env production",
     "preview": "zat theme preview --path='dist'",

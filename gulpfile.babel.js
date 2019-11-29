@@ -9,7 +9,7 @@ import include from "posthtml-include";
 import postCss from "gulp-postcss";
 import autoprefixer from "autoprefixer";
 import dotenv from "dotenv";
-import zip from "gulp-zip";
+import ziptool from "gulp-zip";
 import runSequence from "gulp4-run-sequence";
 import yargs from "yargs";
 import webpackDevConfig from "./webpack.dev";
@@ -44,31 +44,45 @@ if (env === "production") {
     })
   );
 }
+
 // create a single instance of the compiler to allow caching
 var webpackCompiler = webpack(webpackConf);
 
-// gulp.task("package", async function(cb) {
-//   gulp.series("build", "zip", cb);
-// });
-
-gulp.task("package", async function(cb) {
+const packageZip = async cb => {
   runSequence("build", "zip", cb);
-});
+};
 
-gulp.task("zip", function() {
+const zip = () => {
   return gulp
     .src("dist/**")
-    .pipe(zip("theme.zip"))
+    .pipe(ziptool("theme.zip"))
     .pipe(gulp.dest("tmp"));
-});
+};
 
-gulp.task("watch", () => {
-  gulp.watch("./src/templates/*.hbs", gulp.series("build-templates"));
-  gulp.watch("./src/sass/**/*.scss", gulp.series("build-sass"));
-  gulp.watch("./src/js/**", gulp.series("build-js"));
-});
+const watch = () => {
+  gulp.watch("./src/templates/*.hbs", gulp.series("build_templates"));
+  gulp.watch("./src/sass/**/*.scss", gulp.series("build_sass"));
+  gulp.watch("./src/js/**", gulp.series("build_js"));
+  gulp.watch("./src/partials/*.hbs", gulp.series("build_partials"));
+};
 
-gulp.task("build-sass", () => {
+const build_partials = () => {
+  var plugins = [
+    exp({
+      delimiters: ["{{%", "%}}"],
+      unescapedDelimiters: ["{{{%", "%}}}"],
+      locals: config
+    }),
+    include({ root: "src/partials" })
+  ];
+
+  return gulp
+    .src("./src/partials/*.hbs")
+    .pipe(posthtml(plugins, { template: false }))
+    .pipe(gulp.dest("./dist/templates"));
+};
+
+const build_sass = () => {
   const plugins = [autoprefixer()];
 
   return gulp
@@ -77,9 +91,9 @@ gulp.task("build-sass", () => {
     .pipe(sass({ outputStyle: "compressed" }).on("error", sass.logError))
     .pipe(postCss(plugins))
     .pipe(gulp.dest("./dist"));
-});
+};
 
-gulp.task("build-templates", () => {
+const build_templates = () => {
   var plugins = [
     exp({
       delimiters: ["{{%", "%}}"],
@@ -93,9 +107,9 @@ gulp.task("build-templates", () => {
     .src("./src/templates/*.hbs")
     .pipe(posthtml(plugins, { template: false }))
     .pipe(gulp.dest("./dist/templates"));
-});
+};
 
-gulp.task("build-js", function(callback) {
+const build_js = () => {
   // run webpack
   webpackCompiler.run(function(err, stats) {
     if (err) {
@@ -103,6 +117,17 @@ gulp.task("build-js", function(callback) {
     }
     callback();
   });
-});
+};
 
-gulp.task("build", gulp.parallel("build-sass", "build-templates", "build-js"));
+const build = async () => {
+  gulp.parallel("build_sass", "build_templates", "build_js");
+};
+
+exports.package = packageZip;
+exports.zip = zip;
+exports.watch = watch;
+exports.build_partials = build_partials;
+exports.build_sass = build_sass;
+exports.build_templates = build_templates;
+exports.build_js = build_js;
+exports.build = build;
