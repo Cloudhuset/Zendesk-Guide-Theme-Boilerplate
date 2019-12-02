@@ -3,7 +3,9 @@
   background-color: $border-color;
   padding: 30px 0;
 
-  a { color: $text-color; }
+  a {
+    color: $text-color;
+  }
 
   &-inner {
     @include max-width-container;

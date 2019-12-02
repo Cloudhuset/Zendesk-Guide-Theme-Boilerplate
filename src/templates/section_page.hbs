@@ -6,11 +6,11 @@
 		<h1>
 			{{section.name}}
 			{{#if section.internal}}
-				<i class="material-icons md-24">lock</i>
+			<i class="material-icons md-24">lock</i>
 			{{/if}}
 		</h1>
 		{{#if section.description}}
-			<p class="page-header-description">{{section.description}}</p>
+		<p class="page-header-description">{{section.description}}</p>
 		{{/if}}
 		{{subscribe}}
 	</header>
@@ -19,22 +19,22 @@
 		<section class="section-content">
 
 			{{#if section.articles}}
-				<ul class="article-list">
-					{{#each section.articles}}
-						<li class="article-list__item {{#if promoted}} article--promoted{{/if}}">
-							<a href="{{url}}" class="article-list__link">
-								{{title}}
-								{{#if promoted}}
-									<i class="material-icons md-18">grade</i>
-								{{/if}}	
-							</a>
-						</li>
-					{{/each}}
-				</ul>
+			<ul class="article-list">
+				{{#each section.articles}}
+				<li class="article-list__item {{#if promoted}} article--promoted{{/if}}">
+					<a href="{{url}}" class="article-list__link">
+						{{title}}
+						{{#if promoted}}
+						<i class="material-icons md-18">grade</i>
+						{{/if}}
+					</a>
+				</li>
+				{{/each}}
+			</ul>
 			{{else}}
-				<i class="section--empty">
-					<a href="{{section.url}}">{{t 'empty'}}</a>
-				</i>
+			<i class="section--empty">
+				<a href="{{section.url}}">{{t 'empty'}}</a>
+			</i>
 			{{/if}}
 
 			{{pagination}}

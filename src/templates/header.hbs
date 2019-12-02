@@ -1,7 +1,7 @@
 <header class="header">
 	<div class="header__logo">
 		{{#link 'help_center'}}
-			<img src="{{logo_url}}" alt="{{t 'logo'}}">
+		<img src="{{logo_url}}" alt="{{t 'logo'}}">
 		{{/link}}
 	</div>
 
@@ -28,7 +28,7 @@
 	</div>
 
 	<script>
-		$("#toggle").click(function() {
+		$("#toggle").click(function () {
 			$(this).toggleClass("on");
 			$(".header__nav").slideToggle();
 		});

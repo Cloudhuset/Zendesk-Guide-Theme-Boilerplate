@@ -70,12 +70,16 @@
     order: 0; //Move to top of menu
     position: relative;
 
-    a { color: $text_color; }
+    a {
+      color: $text_color;
+    }
   }
 
   li[aria-selected="true"]::after {
     @extend .icon;
-    @include tablet { display: none; }
+    @include tablet {
+      display: none;
+    }
     @include vertical-align;
     content: "\25BE";
     position: absolute;

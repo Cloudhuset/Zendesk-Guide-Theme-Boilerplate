@@ -50,7 +50,9 @@
   }
 
   [role="button"] {
-    @include tablet { width: auto; }
+    @include tablet {
+      width: auto;
+    }
     flex-shrink: 0; /*Avoid collapsing elements in Safari (https://github.com/philipwalton/flexbugs#1-minimum-content-sizing-of-flex-items-not-honored)*/
     width: 100%;
   }
@@ -67,7 +69,9 @@
 
   &__body {
     @include content-body;
-    > p:last-child { margin-bottom: 0; }
+    > p:last-child {
+      margin-bottom: 0;
+    }
   }
 
   &__content {
@@ -131,12 +135,15 @@
       flex: 1 0 auto; //Explicit values needed whith flex-direction: column for IE11
       margin-right: 0;
 
-      &:last-child { margin: 0; }
+      &:last-child {
+        margin: 0;
+      }
 
-      @include tablet { margin-right: 20px; }
+      @include tablet {
+        margin-right: 20px;
+      }
     }
   }
-
 
   &__votes {
     border-top: 1px solid $border-color;
@@ -199,7 +206,9 @@
   }
 
   &-return-to-top {
-    @include desktop { display: none; }
+    @include desktop {
+      display: none;
+    }
 
     border-top: 1px solid $border-color;
 
@@ -289,8 +298,9 @@
     display: none;
   }
 
-  .category-item, .section-item, .article-item {
-
+  .category-item,
+  .section-item,
+  .article-item {
     &__title {
       min-height: 42px;
       color: $text-color;

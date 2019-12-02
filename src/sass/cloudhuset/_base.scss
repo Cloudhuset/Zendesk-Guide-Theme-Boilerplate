@@ -23,20 +23,31 @@ body {
   }
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: $heading_font;
   font-weight: $font-weight-base;
   margin-top: 0;
 }
 
-h1 { font-size: 32px; }
-h2 { font-size: 22px; }
+h1 {
+  font-size: 32px;
+}
+h2 {
+  font-size: 22px;
+}
 h3 {
   font-size: 18px;
   font-weight: $font-weight-semibold;
 }
 
-h4 { font-size: 16px; }
+h4 {
+  font-size: 16px;
+}
 
 a {
   color: $link_color;
@@ -60,7 +71,7 @@ input {
   max-width: 100%;
   box-sizing: border-box;
   outline: none;
-  transition: border .12s ease-in-out;
+  transition: border 0.12s ease-in-out;
 
   &:focus {
     border: 1px solid $brand_color;

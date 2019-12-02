@@ -32,7 +32,9 @@
       text-decoration: underline;
     }
 
-    &:visited { color: $visited-link-color; }
+    &:visited {
+      color: $visited-link-color;
+    }
   }
 
   .meta-group {
@@ -55,14 +57,18 @@
 
   &-count-item {
     &::after {
-      @include tablet { display: none; }
+      @include tablet {
+        display: none;
+      }
 
       content: "·";
       display: inline-block;
       padding: 0 5px;
     }
 
-    &:last-child::after { display: none; }
+    &:last-child::after {
+      display: none;
+    }
   }
 
   &-number {

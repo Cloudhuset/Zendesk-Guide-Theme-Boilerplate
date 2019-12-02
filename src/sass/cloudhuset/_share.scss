@@ -5,7 +5,8 @@
   white-space: nowrap;
 }
 
-.share li, .share a {
+.share li,
+.share a {
   display: inline-block;
 }
 
@@ -28,7 +29,9 @@
 
 .share a:hover {
   text-decoration: none;
-  &::before { color: $brand_color; }
+  &::before {
+    color: $brand_color;
+  }
 }
 
 .share-twitter::before {
