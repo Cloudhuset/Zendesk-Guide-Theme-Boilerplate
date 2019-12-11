@@ -5,7 +5,7 @@
 	<header class="page-header">
 		<h1>{{category.name}}</h1>
 		{{#if category.description}}
-			<p class="page-header-description">{{category.description}}</p>
+		<p class="page-header-description">{{category.description}}</p>
 		{{/if}}
 	</header>
 
@@ -15,43 +15,43 @@
 
 			<div class="sections">
 				{{#each sections}}
-					<section class="section">
-						<h3 class="section__title">
-							<a href="{{url}}">
-								{{name}}
-								{{#if internal}}
-									<i class="material-icons md-18">lock</i>
+				<section class="section">
+					<h3 class="section__title">
+						<a href="{{url}}">
+							{{name}}
+							{{#if internal}}
+							<i class="material-icons md-18">lock</i>
+							{{/if}}
+						</a>
+					</h3>
+					{{#if articles}}
+					<ul class="article-list">
+						{{#each articles}}
+						<li class="article-list__item{{#if promoted}} article--promoted{{/if}}">
+							<a href="{{url}}" class="article-list__link">
+								{{title}}
+								{{#if promoted}}
+								<i class="material-icons md-18">grade</i>
 								{{/if}}
 							</a>
-						</h3>
-						{{#if articles}}
-							<ul class="article-list">
-								{{#each articles}}
-									<li class="article-list__item{{#if promoted}} article--promoted{{/if}}">
-										<a href="{{url}}" class="article-list__link">
-											{{title}}
-											{{#if promoted}}
-												<i class="material-icons md-18">grade</i>
-											{{/if}}
-										</a>
-									</li>
-								{{/each}}
-							</ul>
-							{{#if more_articles}}
-								<a href="{{url}}" class="article-list__all">
-									{{t 'show_all_articles' count=article_count}}
-								</a>
-							{{/if}}
-						{{else}}
-							<i class="section--empty">
-								<a href="{{url}}">{{t 'empty'}}</a>
-							</i>
-						{{/if}}
-					</section>
-				{{else}}
-					<i class="category--empty">
-						<a href="{{category.url}}">{{t 'empty'}}</a>
+						</li>
+						{{/each}}
+					</ul>
+					{{#if more_articles}}
+					<a href="{{url}}" class="article-list__all">
+						{{t 'show_all_articles' count=article_count}}
+					</a>
+					{{/if}}
+					{{else}}
+					<i class="section--empty">
+						<a href="{{url}}">{{t 'empty'}}</a>
 					</i>
+					{{/if}}
+				</section>
+				{{else}}
+				<i class="category--empty">
+					<a href="{{category.url}}">{{t 'empty'}}</a>
+				</i>
 				{{/each}}
 			</div>
 

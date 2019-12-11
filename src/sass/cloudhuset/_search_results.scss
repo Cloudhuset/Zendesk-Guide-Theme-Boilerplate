@@ -30,7 +30,6 @@
 }
 
 .search-result {
-
   &-link {
     display: flex;
     justify-content: space-between;
@@ -89,8 +88,8 @@
   .meta-group {
     align-items: center;
 
-    li a, 
-    li a:visited { 
+    li a,
+    li a:visited {
       color: $secondary-text-color;
 
       &:hover {
@@ -103,9 +102,9 @@
     margin: 0;
 
     li:last-child::after {
-       content: "·";
-       display: inline-block;
-       margin: 0 5px;
+      content: "·";
+      display: inline-block;
+      margin: 0 5px;
     }
   }
 }

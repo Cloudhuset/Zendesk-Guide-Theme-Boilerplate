@@ -13,20 +13,20 @@
 						<h1 title="{{post.title}}">
 							{{post.title}}
 							{{#if post.internal}}
-								<span class="icon-lock" title="{{t 'internal'}}"></span>
+							<span class="icon-lock" title="{{t 'internal'}}"></span>
 							{{/if}}
 						</h1>
 						{{#if post.pinned}}
-							<span class="status-label status-label-pinned">{{t 'pinned'}}</span>
+						<span class="status-label status-label-pinned">{{t 'pinned'}}</span>
 						{{/if}}
 
 						{{#if post.featured}}
-							<span class="status-label status-label-featured">{{t 'featured'}}</span>
+						<span class="status-label status-label-featured">{{t 'featured'}}</span>
 						{{/if}}
 
 						{{#is post.status 'none'}}
 						{{else}}
-							<span class="status-label-{{post.status_dasherized}} status-label">{{post.status_name}}</span>
+						<span class="status-label-{{post.status_dasherized}} status-label">{{post.status_name}}</span>
 						{{/is}}
 					</div>
 					<div class="community-follow">{{subscribe}}</div>
@@ -37,35 +37,35 @@
 						<div class="post-author">
 							<div class="avatar post-avatar">
 								{{#if post.author.agent}}
-									<span class="icon-agent"></span>
+								<span class="icon-agent"></span>
 								{{/if}}
-								<img src="{{post.author.avatar_url}}" alt="Avatar" class="user-avatar"/>
+								<img src="{{post.author.avatar_url}}" alt="Avatar" class="user-avatar" />
 							</div>
 							<div class="post-meta">
-                <span title="{{post.author.name}}">
-					{{#link 'user_profile' id=post.author.id}}
-						{{post.author.name}}
-					{{/link}}
-				</span>
+								<span title="{{post.author.name}}">
+									{{#link 'user_profile' id=post.author.id}}
+									{{post.author.name}}
+									{{/link}}
+								</span>
 
 								<ul class="meta-group">
 									{{#if post.editor}}
-										<li class="meta-data">{{date post.edited_at timeago=true}}</li>
-										<li class="meta-data">{{t 'edited'}}</li>
+									<li class="meta-data">{{date post.edited_at timeago=true}}</li>
+									<li class="meta-data">{{t 'edited'}}</li>
 									{{else}}
-										<li class="meta-data">{{date post.created_at timeago=true}}</li>
+									<li class="meta-data">{{date post.created_at timeago=true}}</li>
 									{{/if}}
 								</ul>
 							</div>
 
 							{{#if post.pending}}
-								<span class="status-label status-label-pending">{{t 'pending_approval'}}</span>
+							<span class="status-label status-label-pending">{{t 'pending_approval'}}</span>
 							{{/if}}
 
 							{{#with post.ticket}}
-								<a href="{{url}}" target="_zendesk_lotus" class="status-label escalation-badge">
-									{{t 'request'}}{{id}}
-								</a>
+							<a href="{{url}}" target="_zendesk_lotus" class="status-label escalation-badge">
+								{{t 'request'}}{{id}}
+							</a>
 							{{/with}}
 						</div>
 
@@ -78,9 +78,9 @@
 					<div class="post-actions-wrapper">
 						<div class="post-vote vote" role='radiogroup'>
 							{{#with post}}
-								{{vote 'up' role='radio' class='vote-up' selected_class='vote-voted'}}
-								{{vote 'sum' class='vote-sum'}}
-								{{vote 'down' role='radio' class='vote-down' selected_class='vote-voted'}}
+							{{vote 'up' role='radio' class='vote-up' selected_class='vote-voted'}}
+							{{vote 'sum' class='vote-sum'}}
+							{{vote 'down' role='radio' class='vote-down' selected_class='vote-voted'}}
 							{{/with}}
 						</div>
 
@@ -93,10 +93,10 @@
 				<footer class="post-footer">
 					<div class="post-share">{{share}}</div>
 					{{#if comments}}
-						<a href="#comment-overview" class="post-comment-count">
-							<span class="icon-comments"></span>
-							{{post.comment_count}}
-						</a>
+					<a href="#comment-overview" class="post-comment-count">
+						<span class="icon-comments"></span>
+						{{post.comment_count}}
+					</a>
 					{{/if}}
 				</footer>
 			</article>
@@ -107,78 +107,80 @@
 				</h3>
 				<p class="comment-callout">{{t 'comments_count' count=post.comment_count}}</p>
 				{{#if comments}}
-					<div class="dropdown comment-sorter">
-						<a class="dropdown-toggle">{{t 'sort_by'}}</a>
-						<span class="dropdown-menu" role="menu">
-							{{#each comment_sorters}}
-								<a aria-selected="{{selected}}" href="{{url}}" role="menuitem">{{name}}</a>
-							{{/each}}
-						</span>
-					</div>
+				<div class="dropdown comment-sorter">
+					<a class="dropdown-toggle">{{t 'sort_by'}}</a>
+					<span class="dropdown-menu" role="menu">
+						{{#each comment_sorters}}
+						<a aria-selected="{{selected}}" href="{{url}}" role="menuitem">{{name}}</a>
+						{{/each}}
+					</span>
+				</div>
 				{{/if}}
 			</section>
 
 			<ul id="comments" class="comment-list">
 				{{#each comments}}
-					<li id="{{anchor}}" class="comment">
-						<div class="comment-wrapper {{#if official}} comment-official {{/if}}">
-							<div class="comment-info">
-								{{#if official}}
-									<span class="comment-official status-label status-label-official">{{t 'official_comment'}}</span>
-								{{/if}}
+				<li id="{{anchor}}" class="comment">
+					<div class="comment-wrapper {{#if official}} comment-official {{/if}}">
+						<div class="comment-info">
+							{{#if official}}
+							<span
+								class="comment-official status-label status-label-official">{{t 'official_comment'}}</span>
+							{{/if}}
 
-								<div class="comment-author">
-									<div class="avatar comment-avatar">
-										{{#if author.agent}}
-											<span class="icon-agent"></span>
-										{{/if}}
-										<img src="{{author.avatar_url}}" alt="Avatar" class="user-avatar"/>
-									</div>
-									<div class="comment-meta">
-                    <span title="{{author.name}}">
-						{{#link 'user_profile' id=author.id}}
-							{{author.name}}
-						{{/link}}
-					</span>
-
-										<ul class="meta-group">
-											{{#if editor}}
-												<li class="meta-data">{{date edited_at timeago=true}}</li>
-												<li class="meta-data">{{t 'edited'}}</li>
-											{{else}}
-												<li class="meta-data">{{date created_at timeago=true}}</li>
-											{{/if}}
-										</ul>
-									</div>
-									<div class="comment-labels">
-										{{#with ticket}}
-											<a href="{{url}}" target="_zendesk_lotus" class="status-label escalation-badge">
-												{{t 'request'}} {{id}}
-											</a>
-										{{/with}}
-										{{#if pending}}
-											<span class="comment-pending status-label status-label-pending">{{t 'pending_approval'}}</span>
-										{{/if}}
-									</div>
+							<div class="comment-author">
+								<div class="avatar comment-avatar">
+									{{#if author.agent}}
+									<span class="icon-agent"></span>
+									{{/if}}
+									<img src="{{author.avatar_url}}" alt="Avatar" class="user-avatar" />
 								</div>
+								<div class="comment-meta">
+									<span title="{{author.name}}">
+										{{#link 'user_profile' id=author.id}}
+										{{author.name}}
+										{{/link}}
+									</span>
 
-								<section class="comment-body">{{body}}</section>
+									<ul class="meta-group">
+										{{#if editor}}
+										<li class="meta-data">{{date edited_at timeago=true}}</li>
+										<li class="meta-data">{{t 'edited'}}</li>
+										{{else}}
+										<li class="meta-data">{{date created_at timeago=true}}</li>
+										{{/if}}
+									</ul>
+								</div>
+								<div class="comment-labels">
+									{{#with ticket}}
+									<a href="{{url}}" target="_zendesk_lotus" class="status-label escalation-badge">
+										{{t 'request'}} {{id}}
+									</a>
+									{{/with}}
+									{{#if pending}}
+									<span
+										class="comment-pending status-label status-label-pending">{{t 'pending_approval'}}</span>
+									{{/if}}
+								</div>
 							</div>
 
-							<div class="comment-actions-container">
-								{{#unless official}}
-									<div class="comment-vote vote" role='radiogroup'>
-										{{vote 'up' role='radio' class='vote-up' selected_class='vote-voted'}}
-										{{vote 'sum' class='vote-sum'}}
-										{{vote 'down' role='radio' class='vote-down' selected_class='vote-voted'}}
-									</div>
-								{{/unless}}
-								<div class="comment-actions actions">
-									{{actions}}
-								</div>
+							<section class="comment-body">{{body}}</section>
+						</div>
+
+						<div class="comment-actions-container">
+							{{#unless official}}
+							<div class="comment-vote vote" role='radiogroup'>
+								{{vote 'up' role='radio' class='vote-up' selected_class='vote-voted'}}
+								{{vote 'sum' class='vote-sum'}}
+								{{vote 'down' role='radio' class='vote-down' selected_class='vote-voted'}}
+							</div>
+							{{/unless}}
+							<div class="comment-actions actions">
+								{{actions}}
 							</div>
 						</div>
-					</li>
+					</div>
+				</li>
 				{{/each}}
 			</ul>
 
@@ -186,17 +188,17 @@
 
 			<section class="post-comments">
 				{{#form 'comment' class='comment-form'}}
-					<div class="avatar comment-avatar">
-						{{user_avatar class='user-avatar'}}
+				<div class="avatar comment-avatar">
+					{{user_avatar class='user-avatar'}}
+				</div>
+				<div class="comment-container">
+					{{wysiwyg 'body'}}
+					<div class="comment-form-controls">
+						{{checkbox 'official'}}
+						{{label 'official'}}
+						{{input type='submit'}}
 					</div>
-					<div class="comment-container">
-						{{wysiwyg 'body'}}
-						<div class="comment-form-controls">
-							{{checkbox 'official'}}
-							{{label 'official'}}
-							{{input type='submit'}}
-						</div>
-					</div>
+				</div>
 				{{/form}}
 			</section>
 

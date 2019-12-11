@@ -23,6 +23,8 @@
       min-width: 343px;
     }
 
-    &::after { font-size: $font-size-base; }
+    &::after {
+      font-size: $font-size-base;
+    }
   }
 }

@@ -19,7 +19,7 @@
         border-bottom: none;
         margin-bottom: 30px;
       }
-      
+
       box-sizing: border-box;
       color: $text-color;
       display: flex;
@@ -42,7 +42,7 @@
       &:hover,
       &:focus,
       &:active {
-        background-color: #F7F7F7;
+        background-color: #f7f7f7;
 
         * {
           text-decoration: none;
@@ -60,7 +60,9 @@
           position: relative;
         }
 
-        a { color: $text_color; }
+        a {
+          color: $text_color;
+        }
       }
 
       &-icon {

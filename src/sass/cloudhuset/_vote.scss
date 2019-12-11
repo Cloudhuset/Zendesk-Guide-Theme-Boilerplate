@@ -31,7 +31,8 @@
   color: $brand_color;
 }
 
-.vote-up::before, .vote-down::before {
+.vote-up::before,
+.vote-down::before {
   @extend .icon;
   color: $secondary-text-color;
   font-size: 24px;

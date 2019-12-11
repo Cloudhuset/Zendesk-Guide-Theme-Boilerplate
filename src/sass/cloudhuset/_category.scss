@@ -11,19 +11,23 @@
 }
 
 .sections {
-  @include tablet { flex-direction: row; }
+  @include tablet {
+    flex-direction: row;
+  }
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: space-between;
 
   .section {
-    @include tablet { flex: 0 0 45%; /* Two columns for tablet and desktop. Leaving 5% separation between columns */ }
+    @include tablet {
+      flex: 0 0 45%; /* Two columns for tablet and desktop. Leaving 5% separation between columns */
+    }
     flex: initial;
 
     &__title {
       margin-bottom: 10px;
-  
+
       a {
         color: $text_color;
         text-decoration: none;
@@ -41,7 +45,6 @@
   .icon-lock::before {
     vertical-align: baseline;
   }
-
 }
 
 .article-list {
@@ -49,7 +52,7 @@
     border-bottom: 1px solid $border-color;
     font-size: $font-size-bigger;
 
-    a { 
+    a {
       color: $text_color;
       display: flex;
       align-items: center;
@@ -72,7 +75,7 @@
     padding: 15px 0;
     color: $text-color;
     font-weight: $font-weight-semibold;
-    
+
     &:hover {
       text-decoration: none;
       color: $brand_color;

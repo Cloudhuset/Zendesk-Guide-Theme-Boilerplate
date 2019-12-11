@@ -27,14 +27,16 @@
   &:hover:not(.pagination-current) {
     background-color: #f3f3f3;
 
-    span, a {
+    span,
+    a {
       color: $text_color;
       text-decoration: none;
     }
   }
 }
 
-.pagination a, .pagination span {
+.pagination a,
+.pagination span {
   @include tablet {
     font-size: $font-size-small;
     padding: 5px 12px;
@@ -47,15 +49,22 @@
 
 .pagination-current {
   background-color: $brand_color;
-  a, span { color: $brand_text_color; }
+  a,
+  span {
+    color: $brand_text_color;
+  }
 }
 
 .pagination-first {
   border-radius: 3px 0 0 3px;
-  [dir="rtl"] & { border-radius: 0 3px 3px 0; }
+  [dir="rtl"] & {
+    border-radius: 0 3px 3px 0;
+  }
 }
 
 .pagination-last {
   border-radius: 0 3px 3px 0;
-  [dir="rtl"] & { border-radius: 3px 0 0 3px; }
+  [dir="rtl"] & {
+    border-radius: 3px 0 0 3px;
+  }
 }

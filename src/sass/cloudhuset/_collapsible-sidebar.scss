@@ -14,7 +14,9 @@
     max-height: none;
 
     .collapsible-sidebar-title::after {
-      @include desktop { display: none; }
+      @include desktop {
+        display: none;
+      }
       content: "\2715";
     }
   }
@@ -22,9 +24,11 @@
   &-title {
     margin-top: 0;
 
-      &::after {
+    &::after {
       @extend .icon;
-      @include desktop { display: none; }
+      @include desktop {
+        display: none;
+      }
       @include vertical-align;
       content: "\25BE";
       position: absolute;
