@@ -14,6 +14,7 @@ import yargs from "yargs";
 import webpackDevConfig from "./webpack.dev";
 import webpackProdConfig from "./webpack.prod";
 import webpack from "webpack";
+import regeneratorRuntime from "regenerator-runtime";
 
 // Load environment config file
 const argv = yargs.argv;
@@ -108,7 +109,7 @@ const build_js = callback => {
   // run webpack
   webpackCompiler.run(function(err, stats) {
     if (err) {
-      console.err(err);
+      console.error(err);
     }
     callback();
   });

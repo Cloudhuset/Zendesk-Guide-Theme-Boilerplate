@@ -4,7 +4,7 @@ module.exports = {
   entry: "./src/js/index.js",
   target: "web",
   output: {
-    path: path.join(__dirname, "/dist"),
+    path: path.resolve(__dirname, "./dist"),
     filename: "script.js"
   },
   module: {
@@ -15,5 +15,14 @@ module.exports = {
       }
     ]
   },
-  plugins: []
+  plugins: [
+    function() {
+      this.plugin("done", function(stats) {
+        if (stats.compilation.errors && stats.compilation.errors.length) {
+          console.log(stats.compilation.errors);
+          process.exit(1);
+        }
+      });
+    }
+  ]
 };
