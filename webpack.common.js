@@ -1,11 +1,13 @@
 const path = require("path");
 
 module.exports = {
-  entry: "./src/js/index.js",
-  target: "web",
+  entry: {
+    index: "./src/js/index.js",
+    article_page: "./src/js/template-js/article_page.js"
+  },
   output: {
     path: path.resolve(__dirname, "./dist"),
-    filename: "script.js"
+    filename: "[name].js"
   },
   module: {
     rules: [
@@ -26,3 +28,5 @@ module.exports = {
     }
   ]
 };
+
+// Next steps: Look into HTMLWEbpack plugin to create multiple outputs
