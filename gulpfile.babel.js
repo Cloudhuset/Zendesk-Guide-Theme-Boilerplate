@@ -71,7 +71,6 @@ const build_partials = () => {
     }),
     include({ root: "src/partials" })
   ];
-
   return gulp
     .src("./src/partials/*.hbs")
     .pipe(posthtml(plugins, { template: false }))
@@ -98,7 +97,6 @@ const build_templates = () => {
     }),
     include({ root: "src/partials" })
   ];
-
   return gulp
     .src("./src/templates/*.hbs")
     .pipe(posthtml(plugins, { template: false }))
@@ -126,4 +124,6 @@ exports.build_partials = build_partials;
 exports.build_sass = build_sass;
 exports.build_templates = build_templates;
 exports.build_js = build_js;
-exports.build = parallel(build_sass, build_templates, build_js);
+exports.build = parallel(build_sass, build_js);
+
+// TODO: build should run build_template && build_partials

@@ -1,8 +1,10 @@
 export const getArticles = (articles, nextPage, cb) => {
+  var locale = $('html').attr('lang').toLowerCase();
+
   const url =
     nextPage !== null
       ? nextPage
-      : `/api/v2/help_center/${window.I18n.locale}/articles.json?per_page=100`;
+      : `/api/v2/help_center/${locale}/articles.json?per_page=100`;
 
   return $.ajax({
     url: url,
@@ -19,10 +21,12 @@ export const getArticles = (articles, nextPage, cb) => {
 };
 
 export const getSections = (sections, nextPage, cb) => {
+  var locale = $('html').attr('lang').toLowerCase();
+
   const url =
     nextPage !== null
       ? nextPage
-      : `/api/v2/help_center/${window.I18n.locale}/sections.json?per_page=100`;
+      : `/api/v2/help_center/${locale}/sections.json?per_page=100`;
 
   $.ajax({
     url: url,
@@ -42,7 +46,7 @@ export const getCategories = (categories, nextPage, cb) => {
   const url =
     nextPage !== null
       ? nextPage
-      : `/api/v2/help_center/${window.I18n.locale}/categories.json?per_page=100`;
+      : `/api/v2/help_center/${locale}/categories.json?per_page=100`;
 
   $.ajax({
     url: url,

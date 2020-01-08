@@ -1,4 +1,5 @@
 const path = require("path");
+var HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: {
@@ -18,6 +19,12 @@ module.exports = {
     ]
   },
   plugins: [
+    new HtmlWebpackPlugin({
+      // Also generate a test.html
+      filename: "./template/article_page.hbs",
+      template: "src/templates/article_page.hbs",
+      chunks: ["article_page"]
+    }),
     function() {
       this.plugin("done", function(stats) {
         if (stats.compilation.errors && stats.compilation.errors.length) {
@@ -28,5 +35,3 @@ module.exports = {
     }
   ]
 };
-
-// Next steps: Look into HTMLWEbpack plugin to create multiple outputs
