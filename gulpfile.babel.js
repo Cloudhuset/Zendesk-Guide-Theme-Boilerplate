@@ -15,6 +15,9 @@ import webpackDevConfig from "./webpack.dev";
 import webpackProdConfig from "./webpack.prod";
 import webpack from "webpack";
 
+// Don't delete this. Needed for package script
+import regeneratorRuntime from "regenerator-runtime";
+
 // Load environment config file
 const argv = yargs.argv;
 const env = argv.env;

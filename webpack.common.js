@@ -9,6 +9,7 @@ module.exports = {
     community_post_page: "./src/js/template-js/community_post_page.js",
     community_topic_list_page: "./src/js/template-js/community_topic_list_page.js",
     community_topic_page: "./src/js/template-js/community_topic_page.js",
+    contribution_page: "./src/js/template-js/contributions_page.js",
     error_page: "./src/js/template-js/error_page.js",
     footer: "./src/js/template-js/footer.js",
     header: "./src/js/template-js/header.js",
@@ -16,6 +17,7 @@ module.exports = {
     new_community_post_page: "./src/js/template-js/new_community_post_page.js",
     new_request_page: "./src/js/template-js/new_request_page.js",
     request_page: "./src/js/template-js/request_page.js",
+    requests_page: "./src/js/template-js/requests_page.js",
     search_results: "./src/js/template-js/search_results.js",
     section_page: "./src/js/template-js/section_page.js",
     subscriptions_page: "./src/js/template-js/subscriptions_page.js",
@@ -23,7 +25,7 @@ module.exports = {
   
   },
   output: {
-    path: path.resolve(__dirname, "./dist/template-js"),
+    path: path.resolve(__dirname, "./dist/assets/"),
     filename: "[name].js"
   },
   module: {
