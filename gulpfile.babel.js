@@ -14,7 +14,6 @@ import yargs from "yargs";
 import webpackDevConfig from "./webpack.dev";
 import webpackProdConfig from "./webpack.prod";
 import webpack from "webpack";
-import regeneratorRuntime from "regenerator-runtime";
 
 // Load environment config file
 const argv = yargs.argv;
@@ -114,7 +113,7 @@ const build_js = callback => {
 };
 
 const build = async () => {
-  // Simply defined to allow us to export build function, which makes parallel call to build_sass, build_templates, build_js
+  // Defined to allow us to export build function, which makes parallel call to build_sass, build_templates, build_js
 };
 
 exports.package = series(build, zip);
@@ -124,6 +123,4 @@ exports.build_partials = build_partials;
 exports.build_sass = build_sass;
 exports.build_templates = build_templates;
 exports.build_js = build_js;
-exports.build = parallel(build_sass, build_js);
-
-// TODO: build should run build_template && build_partials
+exports.build = parallel(build_sass, build_js, build_partials, build_templates);
