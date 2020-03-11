@@ -2,7 +2,7 @@
     "name": "Brugerdefineret tema",
     "author": "Zendesk",
     "version": "1.0.0",
-    "api_version": 1,
+    "api_version": 2,
     "default_locale": "en-us",
     "settings": [
         {
