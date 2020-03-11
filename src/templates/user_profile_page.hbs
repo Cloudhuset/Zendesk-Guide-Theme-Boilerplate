@@ -1,80 +1,79 @@
 <header class="profile-header">
-	<div class="container">
-		<div class="profile-info">
-			<div class="avatar profile-avatar">
-				{{#if user.agent}}
-				<span class="icon-agent"></span>
-				{{/if}}
-				<img class="user-avatar" src="{{user.avatar_url}}" alt="Avatar" />
-			</div>
-			<div class="basic-info">
-				<h1 class="name">
-					{{#if user.url}}
-					<a href="{{user.url}}" target="_zendesk_lotus"
-						title="{{t 'open_user_in_support'}}">{{user.name}}</a>
-					{{else}}
-					{{user.name}}
-					{{/if}}
-				</h1>
-			</div>
-			<div class="options">
-				{{#if private_profile}}
-				<span class="profile-private-badge">{{t 'private'}}</span>
-				{{/if}}
-				{{edit}}
-				<div class="community-follow">{{subscribe}}</div>
-			</div>
+  <div class="container">
+    <div class="profile-info">
+      <div class="avatar profile-avatar">
+        {{#if user.agent}}
+        <span class="icon-agent"></span>
+        {{/if}}
+        <img class="user-avatar" src="{{user.avatar_url}}" alt="Avatar" />
+      </div>
+      <div class="basic-info">
+        <h1 class="name">
+          {{#if user.url}}
+          <a href="{{user.url}}" target="_zendesk_lotus" title="{{t 'open_user_in_support'}}">{{user.name}}</a>
+          {{else}}
+          {{user.name}}
+          {{/if}}
+        </h1>
+      </div>
+      <div class="options">
+        {{#if private_profile}}
+        <span class="profile-private-badge">{{t 'private'}}</span>
+        {{/if}}
+        {{edit}}
+        <div class="community-follow">{{subscribe}}</div>
+      </div>
 
-			{{#if description}}
-			<p class="description">{{description}}</p>
-			{{/if}}
+      {{#if description}}
+      <p class="description">{{description}}</p>
+      {{/if}}
 
-			<ul class="profile-stats profile-stats-activity">
-				<li class="stat">
-					<span class="stat-label">{{t 'total_activity'}}</span>
-					<span class="stat-value">{{total_activity}}</span>
-				</li>
-				<li class="stat">
-					<span class="stat-label">{{t 'last_activity'}}</span>
-					<span class="stat-value">
-						{{#if last_activity_at}}
-						{{date last_activity_at timeago=true}}
-						{{else}}
-						{{t 'no_activity_yet'}}
-						{{/if}}
-					</span>
-				</li>
-				<li class="stat">
-					<span class="stat-label">{{t 'member_since'}}</span>
-					<span class="stat-value">
-						{{#if member_since}}
-						{{date member_since format='medium'}}
-						{{else}}
-						{{t 'no_activity_yet'}}
-						{{/if}}
-					</span>
-				</li>
-			</ul>
-		</div>
-		<ul class="profile-stats profile-stats-counters">
-			<li class="stat">
-				<span class="stat-label">{{t 'following_users'}}</span>
-				<span class="stat-value">{{t 'users_count' count=following_count}}</span>
-			</li>
-			<li class="stat">
-				<span class="stat-label">{{t 'followed_by'}}</span>
-				<span class="stat-value">{{t 'users_count' count=follower_count}}</span>
-			</li>
-			<li class="stat">
-				<span class="stat-label">{{t 'votes'}}</span>
-				<span class="stat-value">{{vote_count}}</span>
-			</li>
-			<li class="stat">
-				<span class="stat-label">{{t 'subscriptions'}}</span>
-				<span class="stat-value">{{subscription_count}}</span>
-			</li>
-		</ul>
-	</div>
+      <ul class="profile-stats profile-stats-activity">
+        <li class="stat">
+          <span class="stat-label">{{t 'total_activity'}}</span>
+          <span class="stat-value">{{total_activity}}</span>
+        </li>
+        <li class="stat">
+          <span class="stat-label">{{t 'last_activity'}}</span>
+          <span class="stat-value">
+            {{#if last_activity_at}}
+            {{date last_activity_at timeago=true}}
+            {{else}}
+            {{t 'no_activity_yet'}}
+            {{/if}}
+          </span>
+        </li>
+        <li class="stat">
+          <span class="stat-label">{{t 'member_since'}}</span>
+          <span class="stat-value">
+            {{#if member_since}}
+            {{date member_since format='medium'}}
+            {{else}}
+            {{t 'no_activity_yet'}}
+            {{/if}}
+          </span>
+        </li>
+      </ul>
+    </div>
+    <ul class="profile-stats profile-stats-counters">
+      <li class="stat">
+        <span class="stat-label">{{t 'following_users'}}</span>
+        <span class="stat-value">{{t 'users_count' count=following_count}}</span>
+      </li>
+      <li class="stat">
+        <span class="stat-label">{{t 'followed_by'}}</span>
+        <span class="stat-value">{{t 'users_count' count=follower_count}}</span>
+      </li>
+      <li class="stat">
+        <span class="stat-label">{{t 'votes'}}</span>
+        <span class="stat-value">{{vote_count}}</span>
+      </li>
+      <li class="stat">
+        <span class="stat-label">{{t 'subscriptions'}}</span>
+        <span class="stat-value">{{subscription_count}}</span>
+      </li>
+    </ul>
+  </div>
 </header>
 
 {{#if visible}}
@@ -82,18 +81,18 @@
 {{#if member_since}}
 
 <nav class="profile-nav collapsible-nav">
-	<ul class="collapsible-nav-list container">
-		{{#each filters}}
-		{{#if selected}}
-		<li aria-selected=true>{{name}}</li>
-		{{else}}
-		<li><a href="{{url}}">{{name}}</a></li>
-		{{/if}}
-		{{/each}}
-	</ul>
+  <ul class="collapsible-nav-list container">
+    {{#each filters}}
+    {{#if selected}}
+    <li aria-selected=true>{{name}}</li>
+    {{else}}
+    <li><a href="{{url}}">{{name}}</a></li>
+    {{/if}}
+    {{/each}}
+  </ul>
 </nav>
 
-{{#is filter_by 'activities'}}
+{{!-- {{#is filter_by 'activities'}}
 <div class="container">
 	<section class="profile-section">
 
@@ -179,9 +178,9 @@
 
 </section>
 </div>
-{{/is}}
+{{/is}} --}}
 
-{{#isnt filter_by 'activities'}}
+{{!-- {{#isnt filter_by 'activities'}}
 <div class="container">
 	<section class="profile-section">
 
@@ -275,15 +274,15 @@
 	</section>
 </div>
 
-{{/isnt}}
+{{/isnt}} --}}
 
 {{/if}}
 
 {{#unless member_since}}
 <div class="container">
-	<section class="profile-section">
-		<span class="no-activity">{{t 'no_content_yet'}}</span>
-	</section>
+  <section class="profile-section">
+    <span class="no-activity">{{t 'no_content_yet'}}</span>
+  </section>
 </div>
 {{/unless}}
 
@@ -291,9 +290,9 @@
 
 {{#unless visible}}
 <div class="container">
-	<section class="profile-section">
-		<span class="private-activity">{{t 'private_activity'}}</span>
-	</section>
+  <section class="profile-section">
+    <span class="private-activity">{{t 'private_activity'}}</span>
+  </section>
 </div>
 {{/unless}}
 

@@ -2,7 +2,7 @@ const path = require("path");
 
 module.exports = {
   entry: {
-    index: "./src/js/index.js",
+    script: "./src/js/script.js",
     article_page: "./src/js/template-js/article_page.js",
     category_page: "./src/js/template-js/category_page.js",
     community_post_list_page: "./src/js/template-js/community_post_list_page.js",

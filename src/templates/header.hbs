@@ -1,38 +1,38 @@
 <header class="header">
-	<div class="header__logo">
-		{{#link 'help_center'}}
-		<img src="{{logo_url}}" alt="{{t 'logo'}}">
-		{{/link}}
-	</div>
+  <div class="header__logo">
+    {{#link 'help_center'}}
+    {{!-- <img src="{{logo_url}}" alt="{{t 'logo'}}"> --}}
+    {{/link}}
+  </div>
 
-	<div class="header__right">
+  <div class="header__right">
 
-		<ul class="header__nav">
-			<li class="header__nav-item">
-				{{link 'help_center'}}
-			</li>
-			<li class="header__nav-item">
-				<a href="{{page_path 'new_request'}}">{{t 'submit_a_request'}}</a>
-			</li>
-		</ul>
-		<div class="header__user-info">
-			{{user_info}}
-		</div>
-		<div class="header__nav-toggle">
-			<div id="toggle">
-				<div class="one"></div>
-				<div class="two"></div>
-				<div class="three"></div>
-			</div>
-		</div>
-	</div>
+    <ul class="header__nav">
+      <li class="header__nav-item">
+        {{link 'help_center'}}
+      </li>
+      <li class="header__nav-item">
+        <a href="{{page_path 'new_request'}}">{{t 'submit_a_request'}}</a>
+      </li>
+    </ul>
+    <div class="header__user-info">
+      {{!-- {{user_info}} --}}
+    </div>
+    <div class="header__nav-toggle">
+      <div id="toggle">
+        <div class="one"></div>
+        <div class="two"></div>
+        <div class="three"></div>
+      </div>
+    </div>
+  </div>
 
-	<script>
-		$("#toggle").click(function () {
-			$(this).toggleClass("on");
-			$(".header__nav").slideToggle();
-		});
-	</script>
+  <script>
+    $("#toggle").click(function () {
+      $(this).toggleClass("on");
+      $(".header__nav").slideToggle();
+    });
+  </script>
 </header>
 
 <script src="{{asset 'header.js'}}"></script>
