@@ -7,95 +7,82 @@
     <p class="page-header-description">{{t 'results' query=query count=results_count}}</p>
   </header>
 
-  <div class="search-results">
-    <section class="search-results-column">
-      <h3 class="search-results-subheading">
-        {{t 'knowledge_base'}}
-      </h3>
-      {{!-- {{#if article_results}}
-			<ul class="search-results-list">
-				{{#each article_results}}
-				<li class="search-result">
-					<a href="{{url}}" class="search-result-link">
-						{{title}}
-						{{#if vote_sum}}
-						<span class="search-result-votes meta-count">{{vote_sum}}<i
-								class="material-icons md-18">thumb_up</i></span>
-						{{/if}}
-					</a>
-					<ul class="meta-group">
-						<li>
-							<ol class="breadcrumbs search-result-breadcrumbs">
-								{{#each path_steps}}
-								<li title="{{name}}"><a href="{{url}}">{{name}}</a></li>
-								{{/each}}
-							</ol>
-						</li>
-						<li class="meta-data">
-							{{#link 'user_profile' id=author.id}}
-							{{author.name}}
-							{{/link}}
-						</li>
-						<li class="meta-data">{{date created_at timeago=true}}</li>
-					</ul>
-					<div class="search-result-description">{{text}}</div>
-				</li>
-				{{/each}}
-			</ul>
-			{{else}}
-			<p>
-				{{t 'no_results' query=query}}
-				{{#link 'help_center'}}
-				{{t 'browse_knowledge_base'}}
-				{{/link}}
-			</p>
-			{{/if}} --}}
-    </section>
 
-    {{#if help_center.community_enabled}}
-    <section class="search-results-column">
-      <h3 class="search-results-subheading">
-        {{t 'community'}}
-      </h3>
-      {{!-- {{#if post_results}}
-			<ul class="search-results-list">
-				{{#each post_results}}
-				<li class="search-result">
-					<a href="{{url}}" class="search-result-link">{{title}}</a>
-					<span class="search-result-meta-count">
-						{{comment_count}}
-					</span>
-					<ul class="meta-group">
-						<li>
-							<ol class="breadcrumbs search-result-breadcrumbs">
-								{{#each path_steps}}
-								<li title="{{name}}"><a href="{{url}}">{{name}}</a></li>
-								{{/each}}
-							</ol>
-						</li>
-						<li class="meta-data">
-							{{#link 'user_profile' id=author.id}}
-							{{author.name}}
-							{{/link}}
-						</li>
-						<li class="meta-data">{{date created_at timeago=true}}</li>
-					</ul>
-					<div class="search-result-description">
-						{{text}}
-					</div>
-				</li>
-				{{/each}}
-			</ul>
-			{{else}}
-			<p>
-				{{t 'no_results' query=query}}
-				{{#link 'topics'}}
-				{{t 'browse_community'}}
-				{{/link}}
-			</p>
-			{{/if}} --}}
+  <div class="search-results">
+    <section class="search-results-sidebar">
+      {{#if help_center.community_enabled}}
+      <section class="filters-in-section collapsible-sidebar">
+        <h3 class="collapsible-sidebar-title sidenav-title">{{t 'filter_by_type'}}</h3>
+        <ul>
+          {{#each filters}}
+          <li>
+            <a href="{{url}}" class="sidenav-item" aria-selected="{{selected}}">{{name}} ({{count}})</a>
+          </li>
+          {{/each}}
+        </ul>
+      </section>
+      {{/if}}
+      {{#if subfilters}}
+      <section class="filters-in-section collapsible-sidebar">
+        {{#is current_filter.identifier 'knowledge_base'}}
+        <h3 class="collapsible-sidebar-title sidenav-title">{{t 'filter_by_category'}}</h3>
+        {{/is}}
+        {{#is current_filter.identifier 'community'}}
+        <h3 class="collapsible-sidebar-title sidenav-title">{{t 'filter_by_topic'}}</h3>
+        {{/is}}
+        <ul>
+          {{#each subfilters}}
+          <li>
+            <a href="{{url}}" class="sidenav-item" aria-selected="{{selected}}">{{name}} ({{count}})</a>
+          </li>
+          {{/each}}
+        </ul>
+      </section>
+      {{/if}}
     </section>
+    {{#if results}}
+    <ul class="search-results-list">
+      {{#each results}}
+      <li class="search-result">
+        <a href="{{url}}" class="search-result-link">
+          {{title}}
+          {{#if vote_sum}}
+          <span class="search-result-votes meta-count">{{vote_sum}}<i class="material-icons md-18">thumb_up</i></span>
+          {{/if}}
+          {{#if comment_count}}
+          <span class="search-result-meta-count">
+            {{comment_count}}
+          </span>
+          {{/if}}
+        </a>
+        <ul class="meta-group">
+          <li>
+            <ol class="breadcrumbs search-result-breadcrumbs">
+              {{#each path_steps}}
+              <li title="{{name}}"><a href="{{url}}">{{name}}</a></li>
+              {{/each}}
+            </ol>
+          </li>
+          <li class="meta-data">
+            {{#link 'user_profile' id=author.id}}
+            {{author.name}}
+            {{/link}}
+          </li>
+          <li class="meta-data">{{date created_at timeago=true}}</li>
+        </ul>
+        <div class="search-result-description">{{text}}</div>
+      </li>
+      {{/each}}
+    </ul>
+    {{else}}
+    <p>
+      {{t 'no_results_unified'}}
+      {{#link 'help_center'}}
+      {{t 'browse_help_center'}}
+      {{/link}}
+    </p>
     {{/if}}
+    </section>
 
   </div>
 
