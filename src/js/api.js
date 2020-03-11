@@ -1,5 +1,5 @@
 export const getArticles = (articles, nextPage, cb) => {
-  var locale = $('html').attr('lang').toLowerCase();
+  const locale = $('html').attr('lang').toLowerCase();
 
   const url =
     nextPage !== null
@@ -21,7 +21,7 @@ export const getArticles = (articles, nextPage, cb) => {
 };
 
 export const getSections = (sections, nextPage, cb) => {
-  var locale = $('html').attr('lang').toLowerCase();
+  const locale = $('html').attr('lang').toLowerCase();
 
   const url =
     nextPage !== null
@@ -43,6 +43,8 @@ export const getSections = (sections, nextPage, cb) => {
 };
 
 export const getCategories = (categories, nextPage, cb) => {
+  const locale = $('html').attr('lang').toLowerCase()
+
   const url =
     nextPage !== null
       ? nextPage
