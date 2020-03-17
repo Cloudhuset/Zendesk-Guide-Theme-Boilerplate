@@ -40,53 +40,55 @@
       </section>
       {{/if}}
     </section>
-    {{#if results}}
-    <ul class="search-results-list">
-      {{#each results}}
-      <li class="search-result">
-        <a href="{{url}}" class="search-result-link">
-          {{title}}
-          {{#if vote_sum}}
-          <span class="search-result-votes meta-count">{{vote_sum}}<i class="material-icons md-18">thumb_up</i></span>
-          {{/if}}
-          {{#if comment_count}}
-          <span class="search-result-meta-count">
-            {{comment_count}}
-          </span>
-          {{/if}}
-        </a>
-        <ul class="meta-group">
-          <li>
-            <ol class="breadcrumbs search-result-breadcrumbs">
-              {{#each path_steps}}
-              <li title="{{name}}"><a href="{{url}}">{{name}}</a></li>
-              {{/each}}
-            </ol>
-          </li>
-          <li class="meta-data">
-            {{#link 'user_profile' id=author.id}}
-            {{author.name}}
-            {{/link}}
-          </li>
-          <li class="meta-data">{{date created_at timeago=true}}</li>
-        </ul>
-        <div class="search-result-description">{{text}}</div>
-      </li>
-      {{/each}}
-    </ul>
-    {{else}}
-    <p>
-      {{t 'no_results_unified'}}
-      {{#link 'help_center'}}
-      {{t 'browse_help_center'}}
-      {{/link}}
-    </p>
-    {{/if}}
+    <section class="search-results-main">
+      {{#if results}}
+      <ul class="search-results-list">
+        {{#each results}}
+        <li class="search-result">
+          <a href="{{url}}" class="search-result-link">
+            {{title}}
+            {{#if vote_sum}}
+            <span class="search-result-votes meta-count">{{vote_sum}}<i class="material-icons md-18">thumb_up</i></span>
+            {{/if}}
+            {{#if comment_count}}
+            <span class="search-result-meta-count">
+              {{comment_count}}
+            </span>
+            {{/if}}
+          </a>
+          <ul class="meta-group">
+            <li>
+              <ol class="breadcrumbs search-result-breadcrumbs">
+                {{#each path_steps}}
+                <li title="{{name}}"><a href="{{url}}">{{name}}</a></li>
+                {{/each}}
+              </ol>
+            </li>
+            <li class="meta-data">
+              {{#link 'user_profile' id=author.id}}
+              {{author.name}}
+              {{/link}}
+            </li>
+            <li class="meta-data">{{date created_at timeago=true}}</li>
+          </ul>
+          <div class="search-result-description">{{text}}</div>
+        </li>
+        {{/each}}
+      </ul>
+      {{else}}
+      <p>
+        {{t 'no_results_unified'}}
+        {{#link 'help_center'}}
+        {{t 'browse_help_center'}}
+        {{/link}}
+      </p>
+      {{/if}}
+      {{pagination}}
+    </section>
     </section>
 
   </div>
 
-  {{pagination}}
 </div>
 
 <script src="{{asset 'search_results.js'}}"></script>

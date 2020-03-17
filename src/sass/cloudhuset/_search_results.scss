@@ -27,6 +27,20 @@
       }
     }
   }
+
+  &-sidebar {
+    margin-bottom: 20px;
+
+    @include desktop {
+      margin-bottom: 0;
+      width: 250px;
+      margin-right: 40px;
+    }
+  }
+
+  &-main {
+    flex-grow: 1;
+  }
 }
 
 .search-result {
