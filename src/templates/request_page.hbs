@@ -64,11 +64,9 @@
 
 			{{pagination}}
 
-			{{#if comment_callout}}
 			<div class="request-follow-up">
 				{{comment_callout}}
 			</div>
-			{{/if}}
 
 			{{#form 'comment' class='comment-form'}}
 			<div class="avatar comment-avatar">
@@ -91,11 +89,9 @@
 
 					{{textarea 'body' rows='7'}}
 
-					{{#if upload}}
 					<div class="comment-attachments">
 						{{upload}}
 					</div>
-					{{/if}}
 				</div>
 
 				<div class="comment-form-controls">
@@ -223,7 +219,6 @@
 			{{/if}}
 		</section>
 	</div>
-	{{chat_about_my_ticket}}
 </div>
 
 <script src="{{asset 'request_page.js'}}"></script>

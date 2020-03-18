@@ -1,1 +1,0 @@
-console.log('Only on the homepage page baby');

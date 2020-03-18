@@ -1,40 +1,37 @@
 <include src="hero-partial.hbs"></include>
 
 <div class="container">
-	<section class="categories">
-		<ul class="category-list">
-			{{#each categories}}
-			{{#if ../has_multiple_categories}}
-			<li class="category-list__item">
-				<a href='{{url}}' class="category-list__item-link">
-					<each loop="cat in categories">
-						{{#is id {{% cat.id %}} }}
-						<img src="{{asset '{{% cat.icon %}}'}}" class="category-list__item-icon" />
-						{{/is}}
-					</each>
-					<h4 class="category-list__item-title">{{name}}</h4>
-					<p class="category-list__item-description">{{excerpt description}}</p>
-				</a>
-			</li>
-			{{else}}
-			{{#each sections}}
-			<li class="category-list__item {{#if internal}}category-list__item--internal{{/if}}">
-				<a href='{{url}}' class="category-list__item-link">
-					<h4 class="category-list__item-title">
-						{{name}}
-						{{#if internal}}
-						<span class="icon-lock" title="{{t 'internal'}}"></span>
-						{{/if}}
-					</h4>
-					<p class="category-list__item-description">{{excerpt description}}</p>
-				</a>
-			</li>
-			{{/each}}
-			{{/if}}
-			{{/each}}
-		</ul>
-		{{pagination}}
-	</section>
+  <section class="categories">
+    <ul class="category-list">
+      {{#each categories}}
+        {{#if ../has_multiple_categories}}
+          <li class="category-list__item">
+            <a href='{{url}}' class="category-list__item-link">
+              <each loop="cat in categories">
+                {{#is id {{% cat.id %}} }}
+                  <img src="{{asset '{{% cat.icon %}}'}}" class="category-list__item-icon" />
+                {{/is}}
+              </each>
+              <h4 class="category-list__item-title">{{name}}</h4>
+              <p class="category-list__item-description">{{excerpt description}}</p>
+            </a>
+          </li>
+        {{else}}
+          {{#each sections}}
+            <li class="category-list__item">
+              <a href='{{url}}' class="category-list__item-link">
+                <h4 class="category-list__item-title">
+                  {{name}}
+                </h4>
+                <p class="category-list__item-description">{{excerpt description}}</p>
+              </a>
+            </li>
+          {{/each}}
+        {{/if}}
+      {{/each}}
+    </ul>
+    {{pagination}}
+  </section>
 </div>
 
 <script src="{{asset 'home_page.js'}}"></script>
