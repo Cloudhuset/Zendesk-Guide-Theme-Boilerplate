@@ -92,7 +92,7 @@
       </ul>
     </nav>
 
-    {{#is filter_by 'activities'}}
+    {{#is current_filter.identifier 'activities'}}
       <div class="container">
         <section class="profile-section">
 
@@ -177,7 +177,7 @@
       </div>
     {{/is}}
 
-    {{#isnt filter_by 'activities'}}
+    {{#isnt current_filter.identifier 'activities'}}
 
       <div class="container">
         <section class="profile-section">
@@ -203,7 +203,7 @@
               {{/if}}
             </header>
 
-            <ul class="profile-contribution-list profile-{{filter_by}}">
+            <ul class="profile-contribution-list profile-{{current_filter.identifier}}">
               {{#each contributions}}
 
                 <li class="profile-contribution">
