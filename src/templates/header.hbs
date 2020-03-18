@@ -16,7 +16,26 @@
       </li>
     </ul>
     <div class="header__user-info">
-      {{user_info}}
+      {{#if signed_in}}
+        <div id="user" class="user-info dropdown" data-helper="user-info">
+          <div class="btn with-image dropdown-toggle" role="button">
+            {{user_avatar class="user-avatar"}}
+            <span id="user-name">{{user_name}}</span>
+          </div>
+          <div id="user-dropdown" class="dropdown-menu dropdown-menu-caret" role="menu">
+            <div role="menu" id="user-menu">
+              {{link "my_activities" role="menuitem"}}
+              {{my_profile role="menuitem"}}
+              {{change_password role="menuitem"}}
+              {{link "sign_out" role="menuitem"}}
+            </div>
+          </div>
+        </div>
+      {{else}}
+        {{#link "sign_in" class="login" role="button" data-auth-action="signin"}}
+        {{t 'sign_in'}}
+        {{/link}}
+      {{/if}}
     </div>
     <div class="header__nav-toggle">
       <div id="toggle">
