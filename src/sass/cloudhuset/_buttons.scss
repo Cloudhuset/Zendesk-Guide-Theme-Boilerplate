@@ -1,6 +1,6 @@
 /***** Buttons *****/
 .button,
-[role="button"] {
+[role="button"], [type="button"] {
   @include tablet {
     width: auto;
   }

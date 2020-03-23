@@ -1,4 +1,5 @@
-import copenhagen from "./copenhagen";
+import _copenhagen from "./copenhagen";
+import _dropdowns from './dropdowns'
 import { getCategories, getSections, getArticles } from "./api";
 import { render } from "./articleTree";
 
