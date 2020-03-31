@@ -1,6 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // Dropdowns
+  var ENTER = 13;
+  var ESCAPE = 27;
+  var SPACE = 32;
+  var UP = 38;
+  var DOWN = 40;
+  var TAB = 9;
   
+  // Dropdowns
   function Dropdown(toggle, menu) {
     this.toggle = toggle;
     this.menu = menu;
@@ -79,6 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
     },
 
     clickHandler: function() {
+      console.log(this.isExpanded)
       if (this.isExpanded) {
         this.dismiss();
       } else {
@@ -166,4 +173,6 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
+
+  console.log(dropdowns)
 });

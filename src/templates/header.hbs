@@ -17,22 +17,24 @@
     </ul>
     <div class="header__user-info">
       {{#if signed_in}}
-        <div id="user" class="user-info dropdown" data-helper="user-info">
-          <div class="btn with-image dropdown-toggle" role="button">
+        <div class="user-info dropdown">
+          <button class="dropdown-toggle" aria-haspopup="true">
             {{user_avatar class="user-avatar"}}
-            <span id="user-name">{{user_name}}</span>
-          </div>
-          <div id="user-dropdown" class="dropdown-menu dropdown-menu-caret" role="menu">
-            <div role="menu" id="user-menu">
-              {{link "my_activities" role="menuitem"}}
-              {{my_profile role="menuitem"}}
-              {{change_password role="menuitem"}}
-              {{link "sign_out" role="menuitem"}}
-            </div>
+            {{user_name}}
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12"
+              class="dropdown-chevron-icon" aria-hidden="true">
+              <path fill="none" stroke="currentColor" stroke-linecap="round" d="M3 4.5l2.6 2.6c.2.2.5.2.7 0L9 4.5" />
+            </svg>
+          </button>
+          <div class="dropdown-menu" role="menu" aria-expanded="false">
+            {{link "my_activities" role="menuitem"}}
+            {{my_profile role="menuitem"}}
+            {{change_password role="menuitem"}}
+            {{link "sign_out" role="menuitem"}}
           </div>
         </div>
       {{else}}
-        {{#link "sign_in" class="login" role="button" data-auth-action="signin"}}
+        {{#link "sign_in"}}
         {{t 'sign_in'}}
         {{/link}}
       {{/if}}
