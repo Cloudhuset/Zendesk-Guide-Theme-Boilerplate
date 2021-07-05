@@ -1,51 +1,73 @@
 <div class="container-divider"></div>
 <div class="container">
-	<nav class="sub-nav">
-		{{breadcrumbs}}
-		{{search submit=false}}
-	</nav>
+  <nav class="sub-nav">
+    {{breadcrumbs}}
+    <div class="search-container">
+      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="search-icon">
+        <circle cx="4.5" cy="4.5" r="4" fill="none" stroke="currentColor"/>
+        <path stroke="currentColor" stroke-linecap="round" d="M11 11L7.5 7.5"/>
+      </svg>
+      {{search submit=false}}
+    </div>
+  </nav>
 
-	<h1 class="form-header">
-		{{t 'what_is_your_post_about'}}
-	</h1>
+  <h1 class="form-header">
+    {{t 'what_is_your_post_about'}}
+  </h1>
 
-	<div class="form">
-		{{#form 'post' class='new_community_post'}}
-		<div class="form-field {{#required 'title'}} required {{/required}}">
-			{{label 'title'}}
-			{{input 'title' autofocus=true}}
-			{{#validate 'title'}}
-			<div class="notification notification-error notification-inline">
-				{{error 'title'}}
-			</div>
-			{{/validate}}
-		</div>
+  <div id="main-content" class="form">
+    {{#form 'post' class='new_community_post'}}
+      <div class="form-field">
+        {{#required 'title'}}
+          {{label 'title'}}
+        {{else}}
+          {{#label 'title'}}
+            {{t 'title_label'}}<span class="optional">({{t 'optional'}})</span>
+          {{/label}}
+        {{/required}}
+        {{input 'title' autofocus=true}}
+        {{#validate 'title'}}
+          <div class="notification notification-error notification-inline">
+            {{error 'title'}}
+          </div>
+        {{/validate}}
+      </div>
 
-		{{suggestion_list class='suggestion-list'}}
+      {{suggestion_list class='suggestion-list'}}
 
-		<div class="form-field {{#required 'details'}} required {{/required}}">
-			{{label 'details'}}
-			{{wysiwyg 'details'}}
-			{{#validate 'details'}}
-			<div class="notification notification-error notification-inline">
-				{{error 'details'}}
-			</div>
-			{{/validate}}
-		</div>
+      <div class="form-field">
+        {{#required 'details'}}
+          {{label 'details'}}
+        {{else}}
+          {{#label 'details'}}
+            {{t 'details_label'}}<span class="optional">({{t 'optional'}})</span>
+          {{/label}}
+        {{/required}}
+        {{wysiwyg 'details'}}
+        {{#validate 'details'}}
+          <div class="notification notification-error notification-inline">
+            {{error 'details'}}
+          </div>
+        {{/validate}}
+      </div>
 
-		<div class="form-field {{#required 'topic'}} required {{/required}}">
-			{{label 'topic'}}
-			{{select 'topic'}}
-			{{#validate 'topic'}}
-			<div class="notification notification-error notification-inline">
-				{{error 'topic'}}
-			</div>
-			{{/validate}}
-		</div>
+      <div class="form-field">
+        {{#required 'topic'}}
+          {{label 'topic'}}
+        {{else}}
+          {{#label 'topic'}}
+            {{t 'topic_label'}}<span class="optional">({{t 'optional'}})</span>
+          {{/label}}
+        {{/required}}
+        {{select 'topic'}}
+        {{#validate 'topic'}}
+          <div class="notification notification-error notification-inline">
+            {{error 'topic'}}
+          </div>
+        {{/validate}}
+      </div>
 
-		<footer>{{input type='submit'}}</footer>
-		{{/form}}
-	</div>
+      <footer>{{input type='submit'}}</footer>
+    {{/form}}
+  </div>
 </div>
-
-<script src="{{asset 'new_community_post_page.js'}}"></script>

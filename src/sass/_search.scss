@@ -1,0 +1,49 @@
+/***** Search field *****/
+.search {
+  position: relative;
+
+  input[type="search"] {
+    border: 1px solid $border-color;
+    border-radius: 30px;
+    box-sizing: border-box;
+    color: $field-text-color;
+    height: 40px;
+    padding-left: 40px;
+    padding-right: 20px;
+    -webkit-appearance: none;
+    width: 100%;
+
+    [dir="rtl"] & {
+      padding-right: 40px;
+      padding-left: 20px;
+    }
+
+    &:focus {
+      border: 1px solid $brand_color;
+      color: $field-text-focus-color;
+    }
+  }
+
+  &-full input[type="search"] {
+    border: 1px solid #fff;
+  }
+}
+
+.search-icon {
+  @include vertical-align;
+  position: absolute;
+  left: 15px;
+  z-index: 1;
+  width: 18px;
+  height: 18px;
+  color: #777;
+
+  [dir="rtl"] & {
+    right: 15px;
+    left: auto;
+  }
+}
+
+.search-container {
+  position: relative;
+}

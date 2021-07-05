@@ -1,0 +1,26 @@
+/***** Metadata *****/
+.meta-group {
+  display: block;
+}
+
+.meta-group-opposite {
+  float: right;
+}
+
+[dir="rtl"] .meta-group-opposite {
+  float: left;
+}
+
+.meta-group * {
+  display: inline;
+}
+
+.meta-data {
+  color: $secondary-text-color;
+  font-size: $font-size-small;
+
+  &:not(:last-child)::after {
+    content: "\00B7";
+    margin: 0 5px;
+  }
+}

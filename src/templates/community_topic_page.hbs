@@ -1,110 +1,124 @@
 <div class="container-divider"></div>
 <div class="container">
-	<nav class="sub-nav">
-		{{breadcrumbs}}
-		{{search scoped=true submit=false}}
-	</nav>
+   <nav class="sub-nav">
+    {{breadcrumbs}}
+    <div class="search-container">
+      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="search-icon">
+        <circle cx="4.5" cy="4.5" r="4" fill="none" stroke="currentColor"/>
+        <path stroke="currentColor" stroke-linecap="round" d="M11 11L7.5 7.5"/>
+      </svg>
+      {{search scoped=settings.scoped_community_search submit=false}}
+    </div>
+  </nav>
 
-	<header class="page-header community-header">
-		<h1>
-			{{topic.name}}
-			{{#if topic.internal}}
-			<span class="icon-lock" title="{{t 'internal'}}"></span>
-			{{/if}}
-		</h1>
-		<span class="post-to-community page-header-item">
-			{{link 'new_post' role='button' topic_id=topic.id class='button button-large'}}
-		</span>
-	</header>
-	<div class="community-header">
-		<p class="page-header-description">{{topic.description}}</p>
-		<div class="community-follow">
-			{{subscribe}}
-		</div>
-	</div>
+  <header class="page-header">
+    <h1>
+      {{topic.name}}
+      {{#if topic.internal}}
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16" class="icon-lock" title="{{t 'internal'}}">
+          <rect width="12" height="9" x="2" y="7" fill="currentColor" rx="1" ry="1"/>
+          <path fill="none" stroke="currentColor" d="M4.5 7.5V4a3.5 3.5 0 017 0v3.5"/>
+        </svg>
+      {{/if}}
+    </h1>
+    <span class="post-to-community">
+      {{link 'new_post' topic_id=topic.id class='button button-large'}}
+    </span>
+  </header>
+  <div class="community-header">
+    <p class="page-header-description">{{topic.description}}</p>
+    {{#if settings.show_follow_topic}}
+      <div class="community-follow">
+        {{subscribe}}
+      </div>
+    {{/if}}
+  </div>
 
-	<div class="topic-header">
-		<span class="topic-filters">
-			<span class="dropdown">
-				<span class="dropdown-toggle">
-					{{current_filter.label}}
-				</span>
-				<span class="dropdown-menu" role="menu">
-					{{#each filters}}
-					<a href="{{url}}" aria-selected="{{selected}}" role="menuitem">
-						{{name}}
-					</a>
-					{{/each}}
-				</span>
-			</span>
-			<span class="dropdown">
-				<span class="dropdown-toggle">
-					{{current_sorter.label}}
-				</span>
-				<span class="dropdown-menu" role="menu">
-					{{#each sorters}}
-					<a href="{{url}}" aria-selected="{{selected}}" role="menuitem">
-						{{name}}
-					</a>
-					{{/each}}
-				</span>
-			</span>
-		</span>
-	</div>
+  <div class="topic-header">
+    <span class="topic-filters">
+      <span class="dropdown">
+        <button class="dropdown-toggle" aria-haspopup="true">
+          {{current_filter.label}}
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="dropdown-chevron-icon">
+            <path fill="none" stroke="currentColor" stroke-linecap="round" d="M3 4.5l2.6 2.6c.2.2.5.2.7 0L9 4.5"/>
+          </svg>
+        </button>
+        <span class="dropdown-menu" role="menu">
+          {{#each filters}}
+            <a href="{{url}}" aria-selected="{{selected}}" role="menuitem">
+              {{name}}
+            </a>
+          {{/each}}
+        </span>
+      </span>
+      <span class="dropdown">
+        <button class="dropdown-toggle" aria-haspopup="true">
+          {{current_sorter.label}}
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="dropdown-chevron-icon">
+            <path fill="none" stroke="currentColor" stroke-linecap="round" d="M3 4.5l2.6 2.6c.2.2.5.2.7 0L9 4.5"/>
+          </svg>
+        </button>
+        <span class="dropdown-menu" role="menu">
+          {{#each sorters}}
+            <a href="{{url}}" aria-selected="{{selected}}" role="menuitem">
+              {{name}}
+            </a>
+          {{/each}}
+        </span>
+      </span>
+    </span>
+  </div>
 
-	<ul class="posts-list striped-list">
-		{{#each posts}}
-		<li>
-			<div class="striped-list-item {{#if featured}}post-featured{{/if}}">
-				<span class="striped-list-info">
-					<a href="{{url}}" title="{{title}}" class="striped-list-title">{{title}}</a>
-					<span class="post-overview-item">
-						{{#if pinned}}
-						<span class="status-label status-label-pinned">{{t 'pinned'}}</span>
-						{{/if}}
+  <div id="main-content" class="posts-list striped-list">
+    {{#each posts}}
+      <section role="region" aria-labelledby="title-{{id}}">
+        <div class="striped-list-item {{#if featured}}post-featured{{/if}}">
+          <span class="striped-list-info">
+            <a href="{{url}}" id="title-{{id}}" class="striped-list-title">{{title}}</a>
+            <span class="post-overview-item">
+              {{#if pinned}}
+                <span class="status-label status-label-pinned">{{t 'pinned'}}</span>
+              {{/if}}
 
-						{{#if featured}}
-						<span class="status-label status-label-featured">{{t 'featured'}}</span>
-						{{/if}}
+              {{#if featured}}
+                <span class="status-label status-label-featured">{{t 'featured'}}</span>
+              {{/if}}
 
-						{{#is status 'none'}}
-						{{else}}
-						<span
-							class="status-label-{{status_dasherized}} status-label striped-list-status">{{status_name}}</span>
-						{{/is}}
-					</span>
+              {{#is status 'none'}}
+              {{else}}
+                <span class="status-label-{{status_dasherized}} status-label striped-list-status">{{status_name}}</span>
+              {{/is}}
+            </span>
 
-					<ul class="meta-group">
-						<li class="meta-data">{{author.name}}</li>
-						{{#if editor}}
-						<li class="meta-data">{{date edited_at timeago=true}}</li>
-						<li class="meta-data">{{t 'edited'}}</li>
-						{{else}}
-						<li class="meta-data">{{date created_at timeago=true}}</li>
-						{{/if}}
-					</ul>
-				</span>
+            <ul class="meta-group">
+              <li class="meta-data">{{author.name}}</li>
+              {{#if editor}}
+                <li class="meta-data">{{date edited_at timeago=true}}</li>
+                <li class="meta-data">{{t 'edited'}}</li>
+              {{else}}
+                <li class="meta-data">{{date created_at timeago=true}}</li>
+              {{/if}}
+            </ul>
+          </span>
 
-				<div class="post-overview-count striped-list-count">
-					<span class="striped-list-count-item">
-						<span class="striped-list-number">{{vote_sum}}</span>
-						{{t 'vote' count=vote_sum}}
-					</span>
-					<span class="striped-list-count-item">
-						<span class="striped-list-number">{{comment_count}}</span>
-						{{t 'comment' count=comment_count}}
-					</span>
-				</div>
-			</div>
-		</li>
-		{{/each}}
-	</ul>
-	{{pagination}}
+          <div class="post-overview-count striped-list-count">
+            <span class="striped-list-count-item">
+              <span class="striped-list-number">{{vote_sum}}</span>
+              {{t 'vote' count=vote_sum}}
+            </span>
+            <span class="striped-list-count-item">
+              <span class="striped-list-number">{{comment_count}}</span>
+              {{t 'comment' count=comment_count}}
+            </span>
+          </div>
+        </div>
+      </section>
+    {{/each}}
+  </div>
+  {{pagination}}
 </div>
 
 <section class="container community-footer">
-	<h4>{{t 'suggest_new_post'}}</h4>
-	{{link 'new_post' role='button' class='button-large'}}
+  <h2 class="community-footer-title">{{t 'suggest_new_post'}}</h2>
+  {{link 'new_post' class='button button-large'}}
 </section>
-
-<script src="{{asset 'community_topic_page.js'}}"></script>

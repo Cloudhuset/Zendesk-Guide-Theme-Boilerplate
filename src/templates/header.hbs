@@ -1,59 +1,46 @@
+<a class="skip-navigation" tabindex="1" href="#main-content">{{t 'skip_navigation' }}</a>
+
 <header class="header">
-  <div class="header__logo">
+  <div class="logo">
     {{#link 'help_center'}}
-    <img src="{{settings.logo}}" alt="{{t 'logo'}}">
+      <img src="{{settings.logo}}" alt="{{t 'home_page' name=help_center.name}}" />
+      {{#if settings.show_brand_name}}
+        <span aria-hidden="true">{{help_center.name}}</span>
+      {{/if}}
     {{/link}}
   </div>
-
-  <div class="header__right">
-
-    <ul class="header__nav">
-      <li class="header__nav-item">
-        {{link 'help_center'}}
-      </li>
-      <li class="header__nav-item">
-        <a href="{{page_path 'new_request'}}">{{t 'submit_a_request'}}</a>
-      </li>
-    </ul>
-    <div class="header__user-info">
-      {{#if signed_in}}
-        <div class="user-info dropdown">
-          <button class="dropdown-toggle" aria-haspopup="true">
-            {{user_avatar class="user-avatar"}}
+  <div class="nav-wrapper">
+    <button class="menu-button" aria-controls="user-nav" aria-expanded="false" aria-label="{{t 'toggle_navigation'}}">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16" class="icon-menu">
+        <path fill="none" stroke="currentColor" stroke-linecap="round" d="M1.5 3.5h13m-13 4h13m-13 4h13"/>
+      </svg>
+    </button>
+    <nav class="user-nav" id="user-nav">
+      {{link 'community'}}
+      {{link 'new_request' class='submit-a-request'}}
+    </nav>
+    {{#if signed_in}}
+      <div class="user-info dropdown">
+        <button class="dropdown-toggle" aria-haspopup="true">
+          {{user_avatar class="user-avatar"}}
+          <span class="hide-on-mobile">
             {{user_name}}
-            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12"
-              class="dropdown-chevron-icon" aria-hidden="true">
-              <path fill="none" stroke="currentColor" stroke-linecap="round" d="M3 4.5l2.6 2.6c.2.2.5.2.7 0L9 4.5" />
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="dropdown-chevron-icon" aria-hidden="true">
+              <path fill="none" stroke="currentColor" stroke-linecap="round" d="M3 4.5l2.6 2.6c.2.2.5.2.7 0L9 4.5"/>
             </svg>
-          </button>
-          <div class="dropdown-menu" role="menu" aria-expanded="false">
-            {{link "my_activities" role="menuitem"}}
-            {{my_profile role="menuitem"}}
-            {{change_password role="menuitem"}}
-            {{link "sign_out" role="menuitem"}}
-          </div>
+          </span>
+        </button>
+        <div class="dropdown-menu" role="menu">
+          {{link "my_activities" role="menuitem"}}
+          {{my_profile role="menuitem"}}
+          {{change_password role="menuitem"}}
+          {{link "sign_out" role="menuitem"}}
         </div>
-      {{else}}
-        {{#link "sign_in"}}
-        {{t 'sign_in'}}
-        {{/link}}
-      {{/if}}
-    </div>
-    <div class="header__nav-toggle">
-      <div id="toggle">
-        <div class="one"></div>
-        <div class="two"></div>
-        <div class="three"></div>
       </div>
-    </div>
+    {{else}}
+      {{#link "sign_in" class="sign-in"}}
+        {{t 'sign_in'}}
+      {{/link}}
+    {{/if}}
   </div>
-
-  <script>
-    $("#toggle").click(function () {
-      $(this).toggleClass("on");
-      $(".header__nav").slideToggle();
-    });
-  </script>
 </header>
-
-<script src="{{asset 'header.js'}}"></script>

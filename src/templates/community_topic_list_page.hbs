@@ -1,86 +1,100 @@
+<h1 class="visibility-hidden">{{ t 'community'}}</h1>
+
 <section class="section hero community-hero">
-	<div class="hero__inner">
-		<h1 class="hero__text">Search community</h1>
-		{{search submit=false class='search search-full' scoped=true}}
-	</div>
+  <h2 class="visibility-hidden">{{ t 'search'}}</h2>
+  <div class="hero-inner">
+    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="search-icon" aria-hidden="true">
+      <circle cx="4.5" cy="4.5" r="4" fill="none" stroke="currentColor"/>
+      <path stroke="currentColor" stroke-linecap="round" d="M11 11L7.5 7.5"/>
+    </svg>
+    {{search submit=false class='search search-full' scoped=settings.scoped_community_search}}
+  </div>
 </section>
 
 <div class="container">
-	<include src="subnav-partial.hbs"></include>
+  <nav class="sub-nav">
+    {{breadcrumbs}}
+  </nav>
 
-	<header class="page-header community-header">
-		<div class="page-header-item dropdown">
-			<div class="dropdown-toggle">
-				<h4>{{t 'community_topics'}}</h4>
-			</div>
-			<span class="dropdown-menu" role="menu">
-				{{#link 'topics' role='menuitem' selected='true'}}
-				{{t 'show_topics'}}
-				{{/link}}
-				{{#link 'posts' role='menuitem'}}
-				{{t 'show_all_posts'}}
-				{{/link}}
-			</span>
-		</div>
-		<span class="page-header-item post-to-community">
-			{{link 'new_post' role='button' class='button-large'}}
-		</span>
-	</header>
+  <header class="page-header community-header">
+      <span class="dropdown">
+          <button class="dropdown-toggle" aria-haspopup="true">
+            <h2 class="title">
+              {{t 'community_topics'}}
+            </h2>
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="dropdown-chevron-icon">
+              <path fill="none" stroke="currentColor" stroke-linecap="round" d="M3 4.5l2.6 2.6c.2.2.5.2.7 0L9 4.5"/>
+            </svg>
+          </button>
+        <span class="dropdown-menu" role="menu">
+          {{#link 'topics' role='menuitem' selected='true'}}
+            {{t 'show_topics'}}
+          {{/link}}
+          {{#link 'posts' role='menuitem'}}
+            {{t 'show_all_posts'}}
+          {{/link}}
+        </span>
+      </span>
+    <span class="post-to-community">
+      {{link 'new_post' class='button button-large'}}
+    </span>
+  </header>
 
-	{{#unless topics}}
-	<p>{{t 'no_content'}}</p>
-	{{/unless}}
+  {{#unless topics}}
+    <p>{{t 'no_content'}}</p>
+  {{/unless}}
 
-	<div class="topics">
-		<ul class="category-list topics-list">
-			{{#each topics}}
-			<li class="category-list__item topics-item {{#if internal}}category-list__item--internal{{/if}}">
-				<a href="{{url}}" class="category-list__item-link">
-					<h4 class="category-list__item-title">
-						{{name}}
+  <div id="main-content" class="blocks topics">
+    <ul class="blocks-list topics-list">
+      {{#each topics}}
+        <li class="blocks-item topics-item {{#if internal}}blocks-item-internal{{/if}}">
+           <a href="{{url}}" class="blocks-item-link">
+             <span class="blocks-item-title">
+               {{name}}
 
-						{{#if internal}}
-						<span class="icon-lock" title="{{t 'internal'}}"></span>
-						{{/if}}
-					</h4>
-					<p class="category-list__item-description">{{excerpt description}}</p>
-					<ul class="meta-group">
-						<li class="meta-data">{{t 'post_count' count=post_count}}</li>
-						<li class="meta-data">{{t 'follower_count' count=follower_count}}</li>
-					</ul>
-				</a>
-			</li>
-			{{/each}}
-		</ul>
-	</div>
+               {{#if internal}}
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16" class="icon-lock" title="{{t 'internal'}}">
+                  <rect width="12" height="9" x="2" y="7" fill="currentColor" rx="1" ry="1"/>
+                  <path fill="none" stroke="currentColor" d="M4.5 7.5V4a3.5 3.5 0 017 0v3.5"/>
+                </svg>
+               {{/if}}
+             </span>
+             <span class="blocks-item-description">{{excerpt description}}</span>
+             <ul class="meta-group">
+               <li class="meta-data">{{t 'post_count' count=post_count}}</li>
+               <li class="meta-data">{{t 'follower_count' count=follower_count}}</li>
+             </ul>
+           </a>
+        </li>
+      {{/each}}
+    </ul>
+  </div>
 
-	{{pagination}}
+  {{pagination}}
 
-	{{#if featured_posts}}
-	<section class="section community-featured-posts">
-		<h3>{{t 'featured_posts'}}</h3>
-		<ul class="promoted-articles">
-			{{#each featured_posts}}
-			<li class="promoted-articles-item">
-				<a href="{{url}}">
-					{{title}}
-				</a>
-			</li>
-			{{/each}}
-		</ul>
-	</section>
-	{{/if}}
+  {{#if featured_posts}}
+    <section class="section community-featured-posts">
+      <h2 class="title">{{t 'featured_posts'}}</h2>
+      <ul class="promoted-articles">
+        {{#each featured_posts}}
+          <li class="promoted-articles-item">
+            <a href="{{url}}">
+              {{title}}
+            </a>
+          </li>
+        {{/each}}
+      </ul>
+    </section>
+  {{/if}}
 
-	<section class="community-activity activity">
-		{{#if help_center.community_enabled}}
-		{{recent_activity scope='community'}}
-		{{/if}}
-	</section>
+  <section class="community-activity activity">
+    {{#if help_center.community_enabled}}
+      {{recent_activity scope='community'}}
+    {{/if}}
+  </section>
 
-	<section class="container community-footer">
-		<h4>{{t 'suggest_new_post'}}</h4>
-		{{link 'new_post' role='button' class='button-large'}}
-	</section>
+  <section class="container community-footer">
+    <h2 class="community-footer-title">{{t 'suggest_new_post'}}</h2>
+    {{link 'new_post' class='button button-large'}}
+  </section>
 </div>
-
-<script src="{{asset 'community_topic_list_page.js'}}"></script>

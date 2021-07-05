@@ -1,0 +1,151 @@
+/***** Header *****/
+$header-height: 71px;
+
+.header {
+  @include max-width-container;
+  position: relative;
+  align-items: center;
+  display: flex;
+  height: $header-height;
+  justify-content: space-between;
+}
+
+.logo img {
+  max-height: 37px;
+  vertical-align: middle;
+}
+
+.logo span {
+  margin: 0 10px;
+  color: $brand_color;
+}
+
+.logo a {
+  display: inline-block;
+}
+
+.logo a:hover, .logo a:focus, .logo a:active {
+  text-decoration: none;
+}
+
+.user-nav {
+  @include tablet { position: relative; }
+  display: inline-block;
+  position: absolute;
+  white-space: nowrap;
+
+  &[aria-expanded="true"] {
+    background-color: #fff;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, .15), 0 4px 10px 0 rgba(0, 0, 0, .1);
+    border: solid 1px #ddd;
+    right: 0;
+    left: 0;
+    top: $header-height;
+    z-index: 1;
+
+    > a {
+      display: block;
+      margin: 20px;
+    }
+  }
+}
+
+.nav-wrapper {
+  a {
+    @include tablet {
+      display: inline-block;
+    }
+
+    border: 0;
+    color: $link_color;
+    display: none;
+    font-size: 14px;
+    padding: 0 20px 0 0;
+    width: auto;
+
+    [dir="rtl"] & { padding: 0 0 0 20px;}
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: transparent;
+      color: $link_color;
+      text-decoration: underline;
+    }
+
+    &.sign-in { display: inline-block; }
+  }
+
+  .hide-on-mobile {
+    @include mobile {
+      @include visually-hidden;
+    }
+  }
+
+  .menu-button {
+    @include tablet { display: none; }
+    background: none;
+    border: 0;
+    color: $link_color;
+    display: inline-block;
+    margin-right: 10px;
+    padding: 0;
+    width: auto;
+
+    .icon-menu {
+      vertical-align: middle;
+      width: 13px;
+      height: 13px;
+    }
+
+    [dir="rtl"] & {
+      margin-left: 10px;
+      margin-right: 0;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: transparent;
+      color: $link_color;
+    }
+  }
+}
+
+.skip-navigation {
+  align-items: center;
+  background-color: black;
+  color: white;
+  display: flex;
+  font-size: 14px;
+  justify-content: center;
+  left: -999px;
+  margin: 20px;
+  padding: 20px;
+  overflow: hidden;
+  position: absolute;
+  top: auto;
+  z-index: -999;
+
+
+  [dir="rtl"] & {
+    left: initial;
+    right: -999px;
+  }
+
+  &:focus,
+  &:active {
+    left: auto;
+    overflow: auto;
+    text-align: center;
+    text-decoration: none;
+    top: auto;
+    z-index: 999;
+
+
+  [dir="rtl"] & {
+    left: initial;
+    right: auto;
+  }
+  }
+}
