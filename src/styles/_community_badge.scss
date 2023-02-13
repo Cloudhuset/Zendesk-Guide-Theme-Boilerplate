@@ -1,0 +1,64 @@
+/***** Community Badges *****/
+/* Styles labels used next to the authors of article comments, community posts, and community comments */
+.community-badge-title {
+  background-color: #04444d;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: $font-weight-semibold;
+  padding: 0px 8px;
+  vertical-align: top;
+  white-space: nowrap;
+  display: inline-block;
+  line-height: 18px;
+  vertical-align: middle;
+}
+
+.community-badge-titles {
+  display: inline;
+}
+
+.community-badge-achievement {
+  display: block;
+  height: 16px;
+  white-space: nowrap;
+  width: 16px;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.community-badge-achievements {
+  display: flex;
+}
+
+.community-badge-achievements-rest {
+  font-size: 12px;
+  font-weight: $font-weight-semibold;
+  line-height: 20px;
+  text-align: center;
+  vertical-align: top;
+}
+
+.community-badge {
+  margin: 2px;
+}
+
+.profile-info {
+  .community-badge-title {
+    padding: 2px 8px;
+    line-height: 20px;
+  }
+
+  .community-badge-achievement {
+    height: 40px;
+    width: 40px;
+  }
+
+  .community-badge-achievements-rest {
+    line-height: 40px;
+    font-size: 20px;
+  }
+}

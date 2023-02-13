@@ -1,0 +1,34 @@
+.sub-nav {
+  align-items: baseline;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 15px 30px;
+  justify-content: space-between;
+  margin-bottom: 55px;
+
+  @include tablet {
+    flex-direction: row;
+  }
+
+  // Inner pages breadcrumbs
+  .breadcrumbs {
+    margin: 0;
+  }
+
+  // Inner pages search field
+  .search-container {
+    max-width: 300px;
+    width: 100%;
+
+    @include tablet {
+      flex: 0 1 300px;
+    }
+  }
+
+  input[type="search"] {
+    &::after { 
+      font-size: $font-size-base; 
+    }
+  }
+}

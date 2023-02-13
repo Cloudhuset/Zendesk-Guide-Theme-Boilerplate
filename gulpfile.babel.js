@@ -1,9 +1,7 @@
-import posthtml from "gulp-posthtml"
 import gulp from "gulp"
-import sass from "gulp-sass"
+import gulpSass from "gulp-sass"
+import _sass from 'sass'
 import sassVars from "gulp-sass-vars"
-import exp from "posthtml-expressions"
-import include from "posthtml-include"
 import postCss from "gulp-postcss"
 import autoprefixer from "autoprefixer"
 import dotenv from "dotenv"
@@ -12,6 +10,10 @@ import yargs from "yargs"
 import webpackDevConfig from "./webpack.dev"
 import webpackProdConfig from "./webpack.prod"
 import webpack from "webpack"
+import through2 from 'through2'
+import { readFileSync } from 'fs'
+
+const sass = gulpSass(_sass)
 
 // Load environment config file
 const argv = yargs.argv
@@ -56,7 +58,7 @@ const build_sass = () => {
   const plugins = [autoprefixer()]
 
   return gulp
-    .src("./src/sass/style.scss")
+    .src("./src/styles/style.scss")
     .pipe(sassVars(config, { verbose: false }))
     .pipe(sass({ outputStyle: "compressed" }).on("error", sass.logError))
     .pipe(postCss(plugins))
@@ -64,17 +66,18 @@ const build_sass = () => {
 }
 
 const build_templates = () => {
-  var plugins = [
-    exp({
-      delimiters: ["{{%", "%}}"],
-      unescapedDelimiters: ["{{{%", "%}}}"],
-      locals: config
-    }),
-    include({ root: "src/partials" })
-  ]
   return gulp
     .src("./src/templates/*.hbs")
-    .pipe(posthtml(plugins, { template: false }))
+    .pipe(through2.obj(function(file, _, cb) {
+      if (file.isBuffer()) {
+        const code = file.contents.toString().replace(/{{ *partial '(.*)' *}}/, (_, partialFileName) => {
+          const fileContent = readFileSync('./src/partials/' + partialFileName, 'utf-8')
+          return fileContent
+        })
+        file.contents = Buffer.from(code)
+      }
+      cb(null, file);
+    }))
     .pipe(gulp.dest("./dist/templates"))
 }
 
@@ -89,7 +92,7 @@ const build_js = () => {
 
 const watch = () => {
   gulp.watch(["./src/templates/*.hbs", "./src/partials/*.hbs"], build_templates)
-  gulp.watch("./src/sass/**/*.scss", build_sass)
+  gulp.watch("./src/styles/**/*.scss", build_sass)
   gulp.watch("./src/js/**", build_js)
 }
 

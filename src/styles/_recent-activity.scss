@@ -1,0 +1,99 @@
+/***** Recent activity *****/
+
+.recent-activity {
+  &-header {
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  &-list { padding: 0; }
+
+  &-item {
+    border-bottom: 1px solid $low-contrast-border-color;
+    overflow: auto;
+    padding: 20px 0;
+
+    h3 {
+      margin: 0;
+    }
+  }
+
+  &-item-parent {
+    font-size: $font-size-bigger;
+    font-weight: 600;
+  }
+
+  &-item-parent,
+  &-item-link {
+    @include tablet {
+      width: 70%;
+      margin: 0;
+    }
+
+    margin: 6px 0;
+    display: inline-block;
+    width: 100%;
+  }
+
+  &-item-link {
+    font-size: 14px;
+  }
+
+  &-item-meta {
+    color: $text_color;
+    @include tablet {
+      margin: 0;
+      float: right;
+
+      [dir="rtl"] & { float: left; }
+
+    }
+
+    margin: 15px 0 0 0;
+    float: none;
+  }
+
+  &-item-time,
+  &-item-comment {
+    display: inline-block;
+    font-size: $font-size-small;
+  }
+
+  &-item-comment {
+    padding-left: 5px;
+
+    [dir="rtl"] & { padding: 0 5px 0 0; }
+
+    &::before {
+      display: inline-block;
+    }
+  }
+
+  &-controls {
+    padding-top: 15px;
+    @include standalone-link;
+  }
+
+  &-accessibility-label {
+    @include visually-hidden;
+  }
+
+  &-comment-icon {
+    svg {
+      vertical-align: middle;
+      color: $brand_color;
+      width: 16px;
+      height: 16px;
+    }
+
+    &:after {
+      content: attr(data-comment-count);
+      margin-left: 3px;
+      
+      [dir="rtl"] & {
+        margin-left: 0;
+        margin-right: 3px;
+      }
+    }
+  }
+}

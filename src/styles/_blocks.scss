@@ -1,0 +1,91 @@
+/***** Blocks *****/
+/* Used in Homepage#categories and Community#topics */
+.blocks {
+  &-list {
+    @include tablet {
+      margin: 0 -15px;
+    }
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    list-style: none;
+    padding: 0;
+  }
+
+  &-item {
+    @include tablet {
+      margin: 0 15px 30px;
+    }
+
+    border: 1px solid $brand_color;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: $brand_color;
+    display: flex;
+    flex: 1 0 340px;
+    margin: 0 0 30px;
+    max-width: 100%;
+    text-align: center;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: $brand_color;
+
+      * {
+        color: $brand_text_color;
+        text-decoration: none;
+      }
+    }
+
+    &-internal {
+      background-color: transparent;
+      border: 1px solid $low-contrast-border-color;
+
+      .icon-lock {
+        height: 15px;
+        width: 15px;
+        bottom: 5px;
+        position: relative;
+      }
+
+      a { color: $text_color; }
+    }
+  }
+
+  &-item-link {
+    color: $brand_color;
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: center;
+    border-radius: inherit;
+
+    &:visited,
+    &:hover,
+    &:active {
+      color: inherit;
+      text-decoration: none;
+    }
+    
+    &:focus {
+      @include focus-ring;
+      text-decoration: none;
+    }
+  }
+
+  &-item-title {
+    margin-bottom: 0;
+    font-size: 16px;
+  }
+
+  &-item-description {
+    margin: 0;
+  }
+
+  &-item-description:not(:empty) {
+    margin-top: 10px;
+  }
+}

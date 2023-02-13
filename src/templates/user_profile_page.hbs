@@ -3,41 +3,45 @@
     <div class="profile-info">
       <div class="avatar profile-avatar">
         {{#if user.agent}}
-           <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="icon-agent">
+           <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="icon-agent" aria-label="{{t 'team_member' name=user.name}}">
             <path fill="currentColor" d="M6 0C2.7 0 0 2.7 0 6s2.7 6 6 6 6-2.7 6-6-2.7-6-6-6zm0 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm2.3 7H3.7c-.3 0-.4-.3-.3-.5C3.9 7.6 4.9 7 6 7s2.1.6 2.6 1.5c.1.2 0 .5-.3.5z"/>
           </svg>
         {{/if}}
         <img class="user-avatar" src="{{user.avatar_url}}" alt=""/>
       </div>
       <div class="basic-info">
-        <h1 class="name">
-          {{#if user.url}}
-            <a href="{{user.url}}" target="_zendesk_lotus" title="{{t 'open_user_in_support'}}">{{user.name}}</a>
-          {{else}}
-            {{user.name}}
-          {{/if}}
-          {{#each user.badges}}
-            {{#is category_slug "titles"}}
-              <span class="community-badge community-badge-titles" title="{{description}}" aria-label="{{name}}">
-                {{#if icon_url}}
-                  <img src="{{icon_url}}" alt="" />
-                {{/if}}
+        <div class="community-name-and-title-badges">
+          <h1 class="name">
+            {{#if user.url}}
+              <a href="{{user.url}}" target="_zendesk_lotus" title="{{t 'open_user_in_support'}}">{{user.name}}</a>
+            {{else}}
+              {{user.name}}
+            {{/if}}
+          </h1>
+
+          <ul aria-label="{{t 'badges'}}" class="community-badge-titles">
+            {{#each (filter user.badges on="category_slug" equals="titles")}}
+              <li class="community-badge community-badge-title" title="{{description}}" aria-label="{{name}}">
                 {{name}}
-              </span>
-            {{/is}}
-          {{/each}}
-        </h1>
-        <div class="community-badge-container-achievements">
-          {{#each user.badges}}
-            {{#is category_slug "achievements"}}
-              {{#if icon_url}}
-                <div class="community-badge community-badge-achievements">
-                  <img src="{{icon_url}}" alt="{{name}}" title="{{name}} | {{description}}" aria-label="{{name}}" />
-                </div>
-              {{/if}}
-            {{/is}}
-          {{/each}}
+              </li>
+            {{/each}}
+          </ul>
         </div>
+        <ul aria-label="{{t 'badges'}}" class="community-badge-achievements">
+          {{#each (slice (filter user.badges on="category_slug" equals="achievements") 0 4)}}
+            <li class="community-badge community-badge-achievement">
+              <img src="{{icon_url}}" alt="{{name}}" title="{{name}} | {{description}}" />
+            </li>
+          {{/each}}
+
+          {{#if (compare (calc user.badges.length "-" 4) ">" 0)}}
+            <li class="community-badge community-badge-achievement">
+              <a href="{{page_path "user_profile" id=user.id filter_by="badges"}}" class="community-badge-achievements-rest" aria-label="{{t 'more_awards_to' count=(calc user.badges.length "-" 4) name=user.name}}">
+                {{t 'plus_more' count=(calc user.badges.length "-" 4)}}
+              </a>
+            </li>
+          {{/if}}
+        </ul>
       </div>
       <div class="options">
         {{#if private_profile}}
@@ -62,7 +66,7 @@
       <ul class="profile-stats profile-stats-activity">
         <li class="stat">
           <span class="stat-label">{{t 'total_activity'}}</span>
-          <span class="stat-value">{{total_activity}}</span>
+          <span class="stat-value" id="total-activity">{{total_activity}}</span>
         </li>
         <li class="stat">
           <span class="stat-label">{{t 'last_activity'}}</span>
@@ -89,19 +93,19 @@
     <ul class="profile-stats profile-stats-counters">
       <li class="stat">
         <span class="stat-label">{{t 'following_users'}}</span>
-        <span class="stat-value">{{t 'users_count' count=following_count}}</span>
+        <span class="stat-value" id="following-count">{{t 'users_count' count=following_count}}</span>
       </li>
       <li class="stat">
         <span class="stat-label">{{t 'followed_by'}}</span>
-        <span class="stat-value">{{t 'users_count' count=follower_count}}</span>
+        <span class="stat-value" id="follower-count">{{t 'users_count' count=follower_count}}</span>
       </li>
       <li class="stat">
         <span class="stat-label">{{t 'votes'}}</span>
-        <span class="stat-value">{{vote_count}}</span>
+        <span class="stat-value" id="vote-count">{{vote_count}}</span>
       </li>
       <li class="stat">
         <span class="stat-label">{{t 'subscriptions'}}</span>
-        <span class="stat-value">{{subscription_count}}</span>
+        <span class="stat-value" id="subscription-count">{{subscription_count}}</span>
       </li>
     </ul>
   </div>
@@ -200,29 +204,29 @@
 
                       <p class="profile-contribution-body">{{excerpt body characters=200}}</p>
 
-                      <ul class="meta-group">
+                      <div class="meta-group">
                         {{#is object_type 'comment'}}
-                          <li class="meta-data">
+                          <span class="meta-data">
                             <a class="comment-link" href={{url}}>{{t 'view_comment'}}</a>
-                          </li>
+                          </span>
                         {{/is}}
-                        <li class="meta-data">{{author.name}}</li>
+                        <span class="meta-data">{{author.name}}</span>
                         {{#if editor}}
-                          <li class="meta-data">{{date edited_at timeago=true}}</li>
-                          <li class="meta-data">
+                          <span class="meta-data">{{date edited_at timeago=true}}</span>
+                          <span class="meta-data">
                             {{#is object_type 'article'}}
                               {{t 'updated'}}
                             {{else}}
                               {{t 'edited'}}
                             {{/is}}
-                          </li>
+                          </span>
                         {{else}}
-                          <li class="meta-data">{{date created_at timeago=true}}</li>
+                          <span class="meta-data">{{date created_at timeago=true}}</span>
                         {{/if}}
                         {{#each stats}}
-                          <li class="meta-data">{{label}}</li>
+                          <span class="meta-data">{{label}}</span>
                         {{/each}}
-                      </ul>
+                      </div>
                     </div>
                   {{/with}}
                 </li>
@@ -361,29 +365,29 @@
 
                     <p class="profile-contribution-body">{{excerpt body characters=200}}</p>
 
-                    <ul class="meta-group">
+                    <div class="meta-group">
                       {{#is object_type 'comment'}}
-                        <li class="meta-data">
+                        <span class="meta-data">
                           <a class="comment-link" href={{url}}>{{t 'view_comment'}}</a>
-                        </li>
+                        </span>
                       {{/is}}
-                      <li class="meta-data">{{author.name}}</li>
+                      <span class="meta-data">{{author.name}}</span>
                       {{#if editor}}
-                        <li class="meta-data">{{date edited_at timeago=true}}</li>
-                        <li class="meta-data">
+                        <span class="meta-data">{{date edited_at timeago=true}}</span>
+                        <span class="meta-data">
                           {{#is object_type 'article'}}
                             {{t 'updated'}}
                           {{else}}
                             {{t 'edited'}}
                           {{/is}}
-                        </li>
+                        </span>
                       {{else}}
-                        <li class="meta-data">{{date created_at timeago=true}}</li>
+                        <span class="meta-data">{{date created_at timeago=true}}</span>
                       {{/if}}
                       {{#each stats}}
-                        <li class="meta-data">{{label}}</li>
+                        <span class="meta-data">{{label}}</span>
                       {{/each}}
-                    </ul>
+                    </div>
                   </li>
 
                 {{/each}}

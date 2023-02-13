@@ -1,0 +1,86 @@
+/***** Status labels *****/
+/* Styles labels used in posts, articles and requests */
+.status-label {
+  background-color: #038153;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: $font-weight-semibold;
+  margin-right: 2px;
+  padding: 3px 10px;
+  vertical-align: middle;
+  white-space: nowrap;
+  display: inline-block;
+
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: none;
+  }
+
+  &-pinned,
+  &-featured,
+  &-official {
+    background-color: $brand_color;
+  }
+
+  &-official {
+    border-radius: 0;
+    margin-right: 0;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+    width: 100%;
+
+    @include tablet {
+      border-radius: 0 0 4px 4px;
+      right: 30px;
+      width: auto;
+    }
+
+    [dir="rtl"] & {
+      left: 30px;
+      right: auto;
+    }
+  }
+
+  &-not-planned,
+  &-closed {
+    background-color: #e9ebed;
+    color: $secondary-text-color;
+  }
+
+  &-pending,
+  &-pending-moderation {
+    background-color: #1f73b7;
+    text-align: center;
+  }
+
+  &-open {
+    background-color: #c72a1c;
+  }
+
+  &-solved {
+    background-color: #68737d;
+  }
+
+  &-new {
+    background-color: #ffb648;
+    color: #703b15;
+  }
+
+  &-hold {
+    background-color: #000;
+  }
+
+  &-request {
+    @include mobile {
+      max-width: 150px;
+    }
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

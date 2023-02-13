@@ -7,8 +7,8 @@ This is a boilerplate theme for the new Zendesk Guide, that precompiles the temp
 ### Include a partial
 
 - Place the partial in src/partials
-- Insert `<include src="your-partial-name.hbs"></include>` in a template file
-- After compilation the include tag will be replaced with the contents of your partial file
+- Insert `{{include 'your-partial-name.hbs'}}` in a template file
+- After compilation the include helper will be replaced with the contents of your partial file
 
 ### Insert environment specific data
 
@@ -33,22 +33,6 @@ To access the config variables in javascript, use the `_config` object, e.g. `_c
 ### Use Zendesk settings variable in sass
 
 When using the zendesk theme editor to write css, you can insert settings variables, and Zendesk will compile their values. However when trying to use one of these values when precompiling our theme, node-sass will try to compile a variable that doesn't exist. So we have to escape these variables. We can do this using the sass unquote() function. Example: `background-image: url(unquote("$homepage_background_image"));`
-
-### Using control structures inside templates (if/else, switch, loops)
-
-To use control structures in the template files, please refer to the posthtml-expressions documentation at https://github.com/posthtml/posthtml-expressions
-
-### Automatically add icons to categories
-
-If you put an image named `cat-icon_{category_id}.{file_extension}`, e.g. `cat-icon_115000739129.png` into the dist/assets folder, it will automatically be made available as an object in the format `{ cat_id: filename }`. Then you can put the following loop into your category loop on the home page:
-
-```
-<each loop="fileName, id in category_icons">
-    {{#is id {{% id %}} }}
-        <img src="{{asset '{{% fileName %}}'}}" />
-    {{/is}}
-</each>
-```
 
 ### Theme preview using ZAT (Zendesk App Tools)
 
